@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Letonya Sayfam — Official Website
 
-## Getting Started
+Latvia's largest Turkish digital platform.
 
-First, run the development server:
+**Live:** [www.letonyasayfam.com](https://www.letonyasayfam.com)
+
+---
+
+## About
+
+LetonyaSayfam is the digital voice of the Turkish community in Latvia and the largest Turkish influencer platform in the Baltic region. With 200,000+ monthly reach across Instagram, TikTok, YouTube and Facebook, we build a strong digital bridge between Latvia and Turkey.
+
+---
+
+## Language Support
+
+| Language | URL | Status |
+|----------|-----|--------|
+| English | `/en` | Active |
+| Turkish | `/tr` | Active |
+| Latvian | `/lv` | Active |
+
+---
+
+## Tech Stack
+
+| Technology | Usage |
+|------------|-------|
+| Next.js 14 | React framework, App Router |
+| TypeScript | Type safety |
+| Tailwind CSS | Styling |
+| Ant Design | UI components |
+| Framer Motion | Animations |
+| Formspree | Form backend |
+| Vercel | Hosting & deployment |
+
+---
+
+---
+
+## Features
+
+- 3 Language Support — EN / TR / LV, URL based (`/en`, `/tr`, `/lv`)
+- Responsive Design — Mobile-first, pixel perfect on all devices
+- Performance — Next.js App Router, SSR & static optimization
+- Animations — Framer Motion scroll & fade animations
+- Collaboration Form — Formspree integration, email notifications
+- Partner Marquee — Infinite scrolling partner strip
+- Service Packages — Opening, Story, Reels (1 or 4 platforms)
+- SEO Optimized — Meta tags, OG, Twitter Card, Schema.org JSON-LD
+- Sitemap & Robots.txt — Ready for Google indexing
+
+---
+
+## Services
+
+| Package | Description |
+|---------|-------------|
+| Opening & Special Days | Video production for openings, events and special occasions |
+| Story Packages | Boost visibility with Instagram Stories |
+| Reels — Instagram | Short videos optimized for Instagram Reels algorithm |
+| Reels — All 4 Platforms | Instagram, TikTok, YouTube Shorts & Facebook Reels |
+
+---
+
+## Partners
+
+- Boxxy LV — E-commerce
+- Cappadocia Restoran — Restaurant
+- The Sofra Restoran — Restaurant
+- Kom Invest — Investment
+
+---
+
+## Installation
 
 ```bash
+git clone https://github.com/atakankaracali/letonyasayfam.git
+cd letonyasayfam
+npm install
+cp .env .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App runs at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+```env
+NEXT_PUBLIC_FORMSPREE_URL=https://formspree.io/f/xxxxxxxx
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+git push origin main
+```
 
-## Deploy on Vercel
+Vercel auto-deploys on every push to main.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO
+
+- Meta title & description (3 languages)
+- Open Graph (Facebook, WhatsApp)
+- Twitter Card
+- Schema.org JSON-LD (Organization)
+- Sitemap XML
+- Robots.txt
+- Google Search Console verified
+- Canonical URLs
+- hreflang (en, tr, lv)
+
+---
+
+## Contact
+
+Email: akaineurope@gmail.com
+Phone: +371 29 356 847
+Instagram: @letonyasayfam
+TikTok: @letonyasayfam
+YouTube: Aka in Europe
+Facebook: Aka in Europe
+
+---
+
+© 2026 Letonya Sayfam. All rights reserved.
