@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Letonya Sayfam", url: "https://letonyasayfam.com" }],
   creator: "Letonya Sayfam",
   publisher: "Letonya Sayfam",
-  metadataBase: new URL("https://letonyasayfam.com"),
+  metadataBase: new URL("https://www.letonyasayfam.com"),
   alternates: {
     canonical: "/",
     languages: {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     apple: "/logo.jpg",
   },
   verification: {
-    google: "google-site-verification-code-buraya",
+    google: "google-site-verification=Oxps_FY_rGmIm9b5Qy33o_A7dxxG-2CnMMTo4CVbHqI",
   },
 };
 
