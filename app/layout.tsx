@@ -20,21 +20,21 @@ export const metadata: Metadata = {
     "dijital reklam Letonya",
     "influencer marketing Latvia",
   ],
-  authors: [{ name: "Letonya Sayfam", url: "https://letonyasayfam.com" }],
+  authors: [{ name: "Letonya Sayfam", url: "https://www.letonyasayfam.com" }],
   creator: "Letonya Sayfam",
   publisher: "Letonya Sayfam",
   metadataBase: new URL("https://www.letonyasayfam.com"),
   alternates: {
     canonical: "/",
     languages: {
-      "en": "/en",
-      "tr": "/tr",
-      "lv": "/lv",
+      en: "/en",
+      tr: "/tr",
+      lv: "/lv",
     },
   },
   openGraph: {
     type: "website",
-    url: "https://letonyasayfam.com",
+    url: "https://www.letonyasayfam.com",
     title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma",
     description:
       "Letonya'nın en büyük Türk dijital platformu. Reklam, içerik üretimi, etkinlik ve kurumsal PR hizmetleri.",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     apple: "/logo.jpg",
   },
   verification: {
-    google: "google-site-verification=Oxps_FY_rGmIm9b5Qy33o_A7dxxG-2CnMMTo4CVbHqI",
+    google: "Oxps_FY_rGmIm9b5Qy33o_A7dxxG-2CnMMTo4CVbHqI",
   },
 };
 
@@ -88,7 +88,6 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#800000" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -96,8 +95,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Letonya Sayfam",
-              url: "https://letonyasayfam.com",
-              logo: "https://letonyasayfam.com/logo.jpg",
+              url: "https://www.letonyasayfam.com",
+              logo: "https://www.letonyasayfam.com/logo.jpg",
               description:
                 "Letonya'nın en büyük Türk dijital platformu. Latvia's largest Turkish digital community.",
               email: "akaineurope@gmail.com",
