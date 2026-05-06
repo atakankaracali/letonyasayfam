@@ -26,8 +26,8 @@ export default function Navbar({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex justify-between items-center gap-4 pr-2 md:pr-0">
+      <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5 px-4 py-4">
+        <div className="max-w-5xl mx-auto flex justify-between items-center">
           <div
             className="flex items-center gap-3 cursor-pointer flex-shrink-0"
             onClick={onLogoClick}
@@ -39,7 +39,7 @@ export default function Navbar({
               height={40}
               className="rounded-full shadow-sm"
             />
-            <span className="font-black text-lg tracking-tighter text-[#800000]">
+            <span className="hidden sm:block font-black text-lg tracking-tighter text-[#800000]">
               LETONYASAYFAM
             </span>
           </div>
