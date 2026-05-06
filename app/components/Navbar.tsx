@@ -1,10 +1,10 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
-import { Drawer, Button } from 'antd';
-import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
-import { type Locale } from '@/locales/i18n';
-import LanguageSwitcher from './LanguageSwitcher';
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import { Drawer, Button } from "antd";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { type Locale } from "@/locales/i18n";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar({
   locale,
@@ -21,14 +21,13 @@ export default function Navbar({
 
   function handleLocaleChange(newLocale: Locale) {
     setLocale(newLocale);
-    window.history.replaceState(null, '', `/${newLocale}`);
+    window.history.replaceState(null, "", `/${newLocale}`);
   }
 
   return (
     <>
       <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex justify-between items-center gap-4">
-
+        <div className="max-w-5xl mx-auto flex justify-between items-center gap-4 pr-2 md:pr-0">
           <div
             className="flex items-center gap-3 cursor-pointer flex-shrink-0"
             onClick={onLogoClick}
@@ -59,7 +58,7 @@ export default function Navbar({
             })}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
             <div className="md:hidden">
               <Button
@@ -69,7 +68,6 @@ export default function Navbar({
               />
             </div>
           </div>
-
         </div>
       </nav>
 
