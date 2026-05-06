@@ -69,11 +69,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logo.jpg", type: "image/jpeg" },
+    ],
     apple: "/logo.jpg",
-  },
-  verification: {
-    google: "Oxps_FY_rGmIm9b5Qy33o_A7dxxG-2CnMMTo4CVbHqI",
+    shortcut: "/favicon.ico",
   },
 };
 
