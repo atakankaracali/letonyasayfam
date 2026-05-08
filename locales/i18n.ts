@@ -30,7 +30,7 @@ export const translations = {
       monthlyReach: "Monthly Average Reach",
       growthTitle: "Sustainable Growth",
       growthDesc:
-        'LetonyaSayfam holds the highest organic reach numbers in Latvia-based content production. Our target audience is not just "followers" — they are a loyal "community".',
+        'LetonyaSayfam holds the highest organic reach numbers in Latvia-based content production. Our target audience is not just "followers", they are a loyal "community".',
       growthQuote:
         '"We directly reach 90% of the Turkish demographic in the Baltic market."',
     },
@@ -297,18 +297,18 @@ export const translations = {
       badge: "Vīzija",
       title: "Autoritāte Baltijas tirgū",
       subtitle:
-        "Spēcīgākais digitālais tilts starp Latviju un Turciju — izveidots, lai savieno kultūras un veicina biznesa izaugsmi.",
+        "Spēcīgākais digitālais tilts starp Latviju un Turciju, izveidots, lai savieno kultūras un veicina biznesa izaugsmi.",
       badge2: "Reģiona Nr. 1 atsauces platforma",
       cardTitle: "Tirgus spēks",
       cardQuote:
-        "Mēs sasniedzam 90% Baltijas turku kopienas — tieši un uzticami.",
+        "Mēs sasniedzam 90% Baltijas turku kopienas, tieši un uzticami.",
     },
     stats: {
       title: "Masveida sasniedzamība un reāla ietekme",
       monthlyReach: "Vidējā mēneša sasniedzamība",
       growthTitle: "Ilgtspējīga izaugsme",
       growthDesc:
-        "LetonyaSayfam ir platforma ar augstākajiem organiskās sasniedzamības rādītājiem Latvijā veidotā saturā. Mūsu auditorija nav tikai sekotāji — tā ir vienota, lojāla kopiena, kurai uzticaties.",
+        "LetonyaSayfam ir platforma ar augstākajiem organiskās sasniedzamības rādītājiem Latvijā veidotā saturā. Mūsu auditorija nav tikai sekotāji, tā ir vienota, lojāla kopiena, kurai uzticaties.",
       growthQuote: '"Mēs tieši sasniedzam 90% turku kopienas Baltijas tirgū."',
     },
     languages: {
@@ -320,7 +320,7 @@ export const translations = {
         },
         {
           title: "Turku valoda",
-          desc: "Dziļas kultūras saiknes pamats ar mūsu galveno auditoriju — turku kopienu Baltijā.",
+          desc: "Dziļas kultūras saiknes pamats ar mūsu galveno auditoriju, turku kopienu Baltijā.",
         },
         {
           title: "Latviešu valoda",
