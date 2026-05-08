@@ -13,6 +13,7 @@ const fadeInUp = {
 const PARTNERS = [
   { name: 'Boxxy LV', emoji: '📦', category: 'E-commerce' },
   { name: 'Cappadocia Restaurant', emoji: '🍽️', category: 'Restaurant' },
+  { name: 'Frescoland Restaurant', emoji: '🥘', category: 'Restaurant' },
   { name: 'The Sofra Restaurant', emoji: '🥘', category: 'Restaurant' },
   { name: 'Kom Invest', emoji: '💼', category: 'Investment' },
 ];
