@@ -5,6 +5,11 @@ const LOCALES = ['en', 'tr', 'lv'];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith('/home')) {
+    return NextResponse.next();
+  }
+
   const firstSegment = pathname.split('/').filter(Boolean)[0];
 
   if (!LOCALES.includes(firstSegment)) {

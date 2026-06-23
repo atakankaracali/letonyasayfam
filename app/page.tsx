@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, startTransition } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Typography } from "antd";
@@ -34,7 +34,19 @@ function getInitialLocale(): Locale {
 }
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>(getInitialLocale);
+  const [locale, setLocale] = useState<Locale>(getInitialLocale());
+
+  useEffect(() => {
+    const segment = window.location.pathname.split("/").filter(Boolean)[0];
+    const detectedLocale = LOCALES.includes(segment as Locale)
+      ? (segment as Locale)
+      : defaultLocale;
+
+    startTransition(() => {
+      setLocale(detectedLocale);
+    });
+  }, []);
+
   const t = useTranslations(locale);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -95,7 +107,7 @@ export default function Home() {
         <PartnersSection t={t.partners} />
         <ServicesPackages t={t.packages} />
         <CollaborationForm t={t.form} />
-        <ContactFooter title={t.contact.title} />
+        <ContactFooter t={t.contact} />
       </div>
     </main>
   );

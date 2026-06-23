@@ -118,6 +118,11 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.addEventListener('unload', function () {});`,
+          }}
+        />
         <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Drawer, Button } from "antd";
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined, HomeOutlined } from "@ant-design/icons";
 import { type Locale } from "@/locales/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -21,7 +21,9 @@ export default function Navbar({
 
   function handleLocaleChange(newLocale: Locale) {
     setLocale(newLocale);
-    window.history.replaceState(null, "", `/${newLocale}`);
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `/${newLocale}`);
+    }
   }
 
   return (
@@ -45,20 +47,25 @@ export default function Navbar({
           </div>
 
           <div className="hidden md:flex gap-8 font-bold text-[11px] uppercase tracking-widest text-zinc-500">
-            {navLinks.map((link) => {
-              return (
-                <a
-                  key={link.name}
-                  href={link.id}
-                  className="hover:text-[#800000] transition-colors"
-                >
-                  {link.name}
-                </a>
-              );
-            })}
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.id}
+                className="hover:text-[#800000] transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
+            <a
+              href="/home"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-black/5 hover:bg-[#800000] hover:text-white text-zinc-500 transition-all"
+              title="All Links"
+            >
+              <HomeOutlined />
+            </a>
             <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
             <div className="md:hidden">
               <Button
@@ -85,18 +92,16 @@ export default function Navbar({
           />
         </div>
         <div className="flex flex-col items-center justify-center h-[70vh] gap-8">
-          {navLinks.map((link) => {
-            return (
-              <a
-                key={link.name}
-                href={link.id}
-                className="text-3xl font-black text-black hover:text-[#800000]"
-                onClick={() => setDrawerVisible(false)}
-              >
-                {link.name}
-              </a>
-            );
-          })}
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.id}
+              className="text-3xl font-black text-black hover:text-[#800000]"
+              onClick={() => setDrawerVisible(false)}
+            >
+              {link.name}
+            </a>
+          ))}
         </div>
       </Drawer>
     </>

@@ -16,6 +16,8 @@ const PARTNERS = [
   { name: 'Frescoland Restaurant', emoji: '🥘', category: 'Restaurant' },
   { name: 'The Sofra Restaurant', emoji: '🥘', category: 'Restaurant' },
   { name: 'Kom Invest', emoji: '💼', category: 'Investment' },
+  { name: 'Baltik Yurtdisi Egitim', emoji: '💼', category: 'Business' },
+  { name: 'Ahh Meat Restaurant', emoji: '🥘', category: 'Restaurant' },
 ];
 
 const PARTNERS_DOUBLED = [...PARTNERS, ...PARTNERS];
