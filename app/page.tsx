@@ -47,6 +47,10 @@ export default function Home() {
     });
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const t = useTranslations(locale);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
