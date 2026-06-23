@@ -1,5 +1,5 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 import {
   InstagramOutlined,
   TikTokOutlined,
@@ -7,44 +7,45 @@ import {
   FacebookOutlined,
   GlobalOutlined,
   CoffeeOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
 const LINKS = [
   {
-    label: 'Instagram',
+    label: "Instagram",
     icon: <InstagramOutlined />,
-    url: 'https://www.instagram.com/letonyasayfam/',
-    color: '#E1306C',
+    url: "https://www.instagram.com/letonyasayfam/",
+    color: "#E1306C",
   },
   {
-    label: 'TikTok',
+    label: "TikTok",
     icon: <TikTokOutlined />,
-    url: 'https://www.tiktok.com/@letonyasayfam',
-    color: '#000000',
+    url: "https://www.tiktok.com/@letonyasayfam",
+    color: "#000000",
   },
   {
-    label: 'YouTube',
+    label: "YouTube",
     icon: <YoutubeOutlined />,
-    url: 'https://www.youtube.com/channel/UCGXxJZ5iSKrlrcVfzPIISJg',
-    color: '#FF0000',
+    url: "https://www.youtube.com/channel/UCGXxJZ5iSKrlrcVfzPIISJg",
+    color: "#FF0000",
   },
   {
-    label: 'Facebook',
+    label: "Facebook",
     icon: <FacebookOutlined />,
-    url: 'https://www.facebook.com/profile.php?id=61579440726565',
-    color: '#4267B2',
+    url: "https://www.facebook.com/profile.php?id=61579440726565",
+    color: "#4267B2",
   },
   {
-    label: 'Continue to Website',
+    label: "Continue to Website",
     icon: <GlobalOutlined />,
-    url: '/en',
-    color: '#800000',
+    url: "/en",
+    color: "#800000",
   },
   {
-    label: 'Buy Me a Coffee',
+    label: "Buy Me a Coffee ☕",
     icon: <CoffeeOutlined />,
-    url: 'https://revolut.me/atakaneae4',
-    color: '#FFA800',
+    url: "https://revolut.me/atakaneae4",
+    color: "#FFA800",
+    highlight: true,
   },
 ];
 
@@ -54,13 +55,13 @@ function LinkButton(props: {
   url: string;
   color: string;
 }) {
-  const isExternal = props.url.startsWith('http');
+  const isExternal = props.url.startsWith("http");
 
   return (
     <a
       href={props.url}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer" : undefined}
       className="group flex items-center gap-4 bg-white border border-black/5 rounded-2xl px-6 py-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
     >
       <span
@@ -112,9 +113,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="text-zinc-400 text-xs mt-10">
-          © 2025 Letonya Sayfam
-        </p>
+        <p className="text-zinc-400 text-xs mt-10">© 2025 Letonya Sayfam</p>
       </div>
     </main>
   );
