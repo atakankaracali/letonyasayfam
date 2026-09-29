@@ -6,7 +6,11 @@ const LOCALES = ['en', 'tr', 'lv'];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/home')) {
+  if (
+    pathname.startsWith('/home') ||
+    pathname.startsWith('/ai') ||
+    pathname.startsWith('/api')
+  ) {
     return NextResponse.next();
   }
 

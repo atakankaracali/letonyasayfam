@@ -7,9 +7,17 @@ import {
   FacebookOutlined,
   GlobalOutlined,
   CoffeeOutlined,
+  RobotOutlined,
 } from "@ant-design/icons";
 
 const LINKS = [
+  {
+    label: "Letonya Sayfam AI 🤖",
+    icon: <RobotOutlined />,
+    url: "/ai",
+    color: "#2563EB",
+    badge: "NEW",
+  },
   {
     label: "Instagram",
     icon: <InstagramOutlined />,
@@ -54,6 +62,7 @@ function LinkButton(props: {
   icon: React.ReactNode;
   url: string;
   color: string;
+  badge?: string;
 }) {
   const isExternal = props.url.startsWith("http");
 
@@ -62,7 +71,7 @@ function LinkButton(props: {
       href={props.url}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
-      className="group flex items-center gap-4 bg-white border border-black/5 rounded-2xl px-6 py-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      className="group flex items-center gap-4 bg-white border border-black/5 rounded-2xl px-6 py-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
     >
       <span
         className="text-2xl w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
@@ -70,8 +79,13 @@ function LinkButton(props: {
       >
         {props.icon}
       </span>
-      <span className="font-black text-black text-base flex-1 text-left">
+      <span className="font-black text-black text-base flex-1 text-left flex items-center gap-2">
         {props.label}
+        {props.badge && (
+          <span className="text-[10px] bg-blue-100 text-blue-600 font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
+            {props.badge}
+          </span>
+        )}
       </span>
       <span className="text-zinc-300 group-hover:text-[#800000] group-hover:translate-x-1 transition-all">
         →
@@ -109,11 +123,12 @@ export default function HomePage() {
               icon={link.icon}
               url={link.url}
               color={link.color}
+              badge={link.badge}
             />
           ))}
         </div>
 
-        <p className="text-zinc-400 text-xs mt-10">© 2025 Letonya Sayfam</p>
+        <p className="text-zinc-400 text-xs mt-10">© 2026 Letonya Sayfam</p>
       </div>
     </main>
   );

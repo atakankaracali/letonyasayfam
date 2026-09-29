@@ -3,22 +3,35 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma",
+  title:
+    "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI Asistents",
   description:
-    "Letonya'nın en büyük Türk dijital platformu. Latvia's largest Turkish digital community platform. Reklam, içerik üretimi, etkinlik ve kurumsal PR hizmetleri.",
+    "Letonya'nın en büyük Türk influencer dijital platformu ve yapay zeka asistanı. Reklam, içerik üretimi, etkinlik, PR hizmetleri ve Letonya yaşam/oturum rehberi.",
   keywords: [
     "Letonya Sayfam",
+    "Letonya Muhtarı",
+    "Letonya Türk topluluğu",
     "Latvija turki",
-    "turku kopiena Latvijā",
     "Letonya Türk",
     "Latvia Turkish influencer",
+    "turku kopiena Latvijā",
     "Riga Turkish community",
     "Baltık Türk dijital platform",
+    "Latvia Turkish influencer",
     "Latvia social media",
     "Instagram Reels Latvia",
     "TikTok Latvia",
     "dijital reklam Letonya",
     "influencer marketing Latvia",
+    "Letonya Sayfam AI",
+    "Letonya AI",
+    "Latvia AI assistant",
+    "PMLP oturum izni",
+    "Riga expat guide",
+    "Letonya yaşam rehberi",
+    "Letonya üniversite eğitimi",
+    "Letonya iş ilanları",
+    "Letonya ev kiralama",
   ],
   authors: [{ name: "Letonya Sayfam", url: "https://www.letonyasayfam.com" }],
   creator: "Letonya Sayfam",
@@ -35,9 +48,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://www.letonyasayfam.com",
-    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma",
+    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI",
     description:
-      "Letonya'nın en büyük Türk dijital platformu. Reklam, içerik üretimi, etkinlik ve kurumsal PR hizmetleri.",
+      "Letonya'nın en büyük Türk influencer dijital platformu ve interaktif yapay zeka asistanı. Reklam, kurumsal PR ve Letonya yaşam rehberi.",
     siteName: "Letonya Sayfam",
     images: [
       {
@@ -52,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma",
+    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI",
     description:
-      "Letonya'nın en büyük Türk dijital platformu. Reklam, içerik üretimi, etkinlik ve kurumsal PR hizmetleri.",
+      "Letonya'nın en büyük Türk influencer dijital platformu ve yapay zeka asistanı. Yeni başlayanlar, üniversiteler ve Letonya yaşam rehberi.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -94,24 +107,44 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Letonya Sayfam",
-              url: "https://www.letonyasayfam.com",
-              logo: "https://www.letonyasayfam.com/logo.jpg",
-              description:
-                "Letonya'nın en büyük Türk dijital platformu. Latvia's largest Turkish digital community.",
-              email: "akaineurope@gmail.com",
-              telephone: "+37129356847",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Riga",
-                addressCountry: "LV",
-              },
-              sameAs: [
-                "https://www.instagram.com/letonyasayfam/",
-                "https://www.tiktok.com/@letonyasayfam",
-                "https://www.youtube.com/channel/UCGXxJZ5iSKrlrcVfzPIISJg",
-                "https://www.facebook.com/profile.php?id=61579440726565",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.letonyasayfam.com/#organization",
+                  name: "Letonya Sayfam",
+                  url: "https://www.letonyasayfam.com",
+                  logo: "https://www.letonyasayfam.com/logo.jpg",
+                  description:
+                    "Letonya'nın en büyük Türk influencer dijital platformu. Latvia's largest Turkish digital community.",
+                  email: "akaineurope@gmail.com",
+                  telephone: "+37129356847",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Riga",
+                    addressCountry: "LV",
+                  },
+                  sameAs: [
+                    "https://www.instagram.com/letonyasayfam/",
+                    "https://www.tiktok.com/@letonyasayfam",
+                    "https://www.youtube.com/channel/UCGXxJZ5iSKrlrcVfzPIISJg",
+                    "https://www.facebook.com/profile.php?id=61579440726565",
+                  ],
+                },
+                {
+                  "@type": "WebApplication",
+                  "@id": "https://www.letonyasayfam.com/ai/#webapp",
+                  name: "Letonya Sayfam AI",
+                  url: "https://www.letonyasayfam.com/ai",
+                  applicationCategory: "EducationalApplication",
+                  operatingSystem: "All",
+                  description:
+                    "Interactive AI assistant providing guidance on Latvian residence permits (PMLP), higher education, and daily life.",
+                  offers: {
+                    "@type": "Offer",
+                    price: "0",
+                    priceCurrency: "EUR",
+                  },
+                },
               ],
             }),
           }}

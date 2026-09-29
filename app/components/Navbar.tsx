@@ -1,8 +1,14 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Drawer, Button } from "antd";
-import { MenuOutlined, CloseOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  CloseOutlined,
+  HomeOutlined,
+  RobotOutlined,
+} from "@ant-design/icons";
 import { type Locale } from "@/locales/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -46,7 +52,7 @@ export default function Navbar({
             </span>
           </div>
 
-          <div className="hidden md:flex gap-8 font-bold text-[11px] uppercase tracking-widest text-zinc-500">
+          <div className="hidden md:flex items-center gap-8 font-bold text-[11px] uppercase tracking-widest text-zinc-500">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -58,7 +64,19 @@ export default function Navbar({
             ))}
           </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2.5 flex-shrink-0">
+            <Link
+              href="/ai"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-200 text-xs font-bold transition-all shadow-xs"
+              title="Letonya AI Asistanı"
+            >
+              <RobotOutlined className="text-sm" />
+              <span>AI</span>
+              <span className="text-[9px] bg-blue-600 text-white group-hover:bg-white group-hover:text-blue-600 px-1 py-0.2 rounded-full uppercase">
+                NEW
+              </span>
+            </Link>
+
             <a
               href="/home"
               className="flex items-center justify-center w-9 h-9 rounded-full bg-black/5 hover:bg-[#800000] hover:text-white text-zinc-500 transition-all"
@@ -66,7 +84,9 @@ export default function Navbar({
             >
               <HomeOutlined />
             </a>
+
             <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
+
             <div className="md:hidden">
               <Button
                 className="border-none shadow-none text-black p-0"
@@ -91,12 +111,20 @@ export default function Navbar({
             onClick={() => setDrawerVisible(false)}
           />
         </div>
-        <div className="flex flex-col items-center justify-center h-[70vh] gap-8">
+        <div className="flex flex-col items-center justify-center h-[70vh] gap-6">
+          <Link
+            href="/ai"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-600 text-white font-bold text-lg shadow-md"
+            onClick={() => setDrawerVisible(false)}
+          >
+            <RobotOutlined /> Letonya Sayfam AI
+          </Link>
+
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.id}
-              className="text-3xl font-black text-black hover:text-[#800000]"
+              className="text-2xl font-black text-black hover:text-[#800000]"
               onClick={() => setDrawerVisible(false)}
             >
               {link.name}

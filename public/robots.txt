@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://letonyasayfam.com/sitemap.xml`
+Sitemap: https://letonyasayfam.com/sitemap.xml
