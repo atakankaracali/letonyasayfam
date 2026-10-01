@@ -195,7 +195,7 @@ export default function AIPage() {
                         {...props}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-blue-600 underline font-semibold hover:text-blue-800"
+                        className="text-[10px] bg-white text-[#800000] border border-[#800000]/20 font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs leading-none"
                       />
                     ),
                     p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
