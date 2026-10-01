@@ -73,7 +73,7 @@ export default function Navbar({
               <RobotOutlined className="text-xs text-amber-400" />
               <span>AI</span>
 
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 shadow-xs leading-none">
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-black text-white shadow-xs leading-none">
                 NEW
               </span>
             </Link>
