@@ -67,8 +67,7 @@ export default function AIPage() {
           ...prev,
           {
             role: "assistant",
-            content:
-              data.error || "An unexpected error occurred. Please try again.",
+            content: data.error || "An unexpected error occurred. Please try again.",
           },
         ]);
       }
@@ -150,9 +149,7 @@ export default function AIPage() {
       <div className="w-full max-w-2xl mx-auto px-4 pt-3 shrink-0">
         <div className="bg-gradient-to-r from-amber-50/90 to-orange-50/90 border border-amber-200/60 rounded-xl p-2.5 sm:p-3 flex items-center justify-between gap-2 shadow-2xs">
           <div className="flex items-center gap-2.5 min-w-0">
-            <span className="text-lg bg-amber-100 p-1.5 rounded-lg shrink-0">
-              ☕
-            </span>
+            <span className="text-lg bg-amber-100 p-1.5 rounded-lg shrink-0">☕</span>
             <div className="truncate">
               <p className="text-xs font-bold text-amber-950 truncate">
                 Letonya Sayfam AI is free
@@ -166,7 +163,7 @@ export default function AIPage() {
             href="https://revolut.me/atakaneae4"
             target="_blank"
             rel="noreferrer"
-            className="text-[10px] bg-white text-[#800000] border border-[#800000]/20 font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs leading-none"
+            className="shrink-0 bg-white text-[#800000] border border-[#800000]/20 font-bold text-[11px] px-3 py-1.5 rounded-lg shadow-2xs transition-all active:scale-95"
           >
             Revolut →
           </a>
@@ -201,23 +198,15 @@ export default function AIPage() {
                         className="text-[10px] bg-white text-[#800000] border border-[#800000]/20 font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs leading-none"
                       />
                     ),
-                    p: ({ children }) => (
-                      <p className="mb-2 last:mb-0">{children}</p>
-                    ),
+                    p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
                     ul: ({ children }) => (
-                      <ul className="list-disc pl-4 space-y-1 mb-2 last:mb-0">
-                        {children}
-                      </ul>
+                      <ul className="list-disc pl-4 space-y-1 mb-2 last:mb-0">{children}</ul>
                     ),
                     ol: ({ children }) => (
-                      <ol className="list-decimal pl-4 space-y-1 mb-2 last:mb-0">
-                        {children}
-                      </ol>
+                      <ol className="list-decimal pl-4 space-y-1 mb-2 last:mb-0">{children}</ol>
                     ),
                     strong: ({ children }) => (
-                      <strong className="font-bold text-zinc-950">
-                        {children}
-                      </strong>
+                      <strong className="font-bold text-zinc-950">{children}</strong>
                     ),
                   }}
                 >
@@ -265,8 +254,7 @@ export default function AIPage() {
           </button>
         </form>
         <p className="text-[10px] text-zinc-400 text-center mt-1.5">
-          AI responses are for general guidance. Refer to official PMLP
-          regulations for legal procedures.
+          AI responses are for general guidance. Refer to official PMLP regulations for legal procedures.
         </p>
       </div>
     </div>
