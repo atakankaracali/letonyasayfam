@@ -82,7 +82,7 @@ function LinkButton(props: {
       <span className="font-black text-black text-base flex-1 text-left flex items-center gap-2">
         {props.label}
         {props.badge && (
-          <span className="text-[10px] bg-blue-100 text-blue-600 font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
+          <span className="text-[10px] bg-white text-[#800000] border border-[#800000]/20 font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs leading-none">
             {props.badge}
           </span>
         )}
