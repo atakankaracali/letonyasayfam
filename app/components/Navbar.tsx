@@ -34,25 +34,25 @@ export default function Navbar({
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5 px-4 py-4">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
+      <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5 px-3 sm:px-4 py-3 sm:py-4">
+        <div className="max-w-5xl mx-auto flex justify-between items-center gap-2">
           <div
-            className="flex items-center gap-3 cursor-pointer flex-shrink-0"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer min-w-0 shrink"
             onClick={onLogoClick}
           >
             <Image
               src="/logo.jpg"
               alt="Logo"
-              width={40}
-              height={40}
-              className="rounded-full shadow-sm"
+              width={36}
+              height={36}
+              className="rounded-full shadow-sm shrink-0"
             />
-            <span className="hidden sm:block font-black text-lg tracking-tighter text-[#800000]">
+            <span className="hidden sm:block font-black text-lg tracking-tighter text-[#800000] truncate">
               LETONYASAYFAM
             </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 font-bold text-[11px] uppercase tracking-widest text-zinc-500">
+          <div className="hidden md:flex items-center gap-8 font-bold text-[11px] uppercase tracking-widest text-zinc-500 shrink-0">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -64,32 +64,34 @@ export default function Navbar({
             ))}
           </div>
 
-          <div className="flex items-center gap-2.5 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <Link
               href="/ai"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-200 text-xs font-bold transition-all shadow-xs"
+              className="flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-200 text-xs font-bold transition-all shadow-xs shrink-0"
               title="Letonya AI Asistanı"
             >
-              <RobotOutlined className="text-sm" />
+              <RobotOutlined className="text-xs sm:text-sm" />
               <span>AI</span>
-              <span className="text-[9px] bg-blue-600 text-white group-hover:bg-white group-hover:text-blue-600 px-1 py-0.2 rounded-full uppercase">
+              <span className="text-[9px] bg-blue-600 text-white px-1 py-0.2 rounded-full uppercase leading-none">
                 NEW
               </span>
             </Link>
 
             <a
               href="/home"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-black/5 hover:bg-[#800000] hover:text-white text-zinc-500 transition-all"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/5 hover:bg-[#800000] hover:text-white text-zinc-500 transition-all shrink-0"
               title="All Links"
             >
-              <HomeOutlined />
+              <HomeOutlined className="text-sm" />
             </a>
 
-            <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
+            <div className="shrink-0">
+              <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
+            </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden shrink-0 flex items-center">
               <Button
-                className="border-none shadow-none text-black p-0"
+                className="border-none shadow-none text-black p-0 flex items-center justify-center w-7 h-7"
                 icon={<MenuOutlined />}
                 onClick={() => setDrawerVisible(true)}
               />
