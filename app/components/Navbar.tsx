@@ -67,7 +67,7 @@ export default function Navbar({
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <Link
               href="/ai"
-              className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 text-white hover:bg-[#800000] text-xs font-semibold tracking-wide transition-all shadow-sm shrink-0 active:scale-95"
+              className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#800000] text-white hover:bg-[#800000] text-xs font-semibold tracking-wide transition-all shadow-sm shrink-0 active:scale-95"
               title="Letonya AI Asistanı"
             >
               <RobotOutlined className="text-xs text-amber-400" />
