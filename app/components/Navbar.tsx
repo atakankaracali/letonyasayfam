@@ -70,10 +70,10 @@ export default function Navbar({
               className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#800000] text-white hover:bg-[#800000] text-xs font-semibold tracking-wide transition-all shadow-sm shrink-0 active:scale-95"
               title="Letonya AI Asistanı"
             >
-              <RobotOutlined className="text-xs text-amber-400" />
+              <RobotOutlined className="text-xs text-white/90" />
               <span>AI</span>
 
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-black text-white shadow-xs leading-none">
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-white text-[#800000] shadow-xs leading-none">
                 NEW
               </span>
             </Link>
