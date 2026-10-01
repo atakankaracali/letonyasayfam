@@ -67,12 +67,13 @@ export default function Navbar({
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <Link
               href="/ai"
-              className="flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white border border-blue-200 text-xs font-bold transition-all shadow-xs shrink-0"
+              className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 text-white hover:bg-[#800000] text-xs font-semibold tracking-wide transition-all shadow-sm shrink-0 active:scale-95"
               title="Letonya AI Asistanı"
             >
-              <RobotOutlined className="text-xs sm:text-sm" />
+              <RobotOutlined className="text-xs text-amber-400" />
               <span>AI</span>
-              <span className="text-[9px] bg-blue-600 text-white px-1 py-0.2 rounded-full uppercase leading-none">
+
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 shadow-xs leading-none">
                 NEW
               </span>
             </Link>
@@ -86,7 +87,10 @@ export default function Navbar({
             </a>
 
             <div className="shrink-0">
-              <LanguageSwitcher locale={locale} setLocale={handleLocaleChange} />
+              <LanguageSwitcher
+                locale={locale}
+                setLocale={handleLocaleChange}
+              />
             </div>
 
             <div className="md:hidden shrink-0 flex items-center">
