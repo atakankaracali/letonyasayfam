@@ -12,7 +12,7 @@ import {
 
 const LINKS = [
   {
-    label: "Letonya Sayfam AI 🤖",
+    label: "Letonya Sayfam AI",
     icon: <RobotOutlined />,
     url: "/ai",
     color: "#2563EB",
