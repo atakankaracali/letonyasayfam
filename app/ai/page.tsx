@@ -15,70 +15,90 @@ import {
 interface Message {
   role: "user" | "assistant";
   content: string;
+  isError?: boolean;
+  isLocal?: boolean;
 }
 
+const MAX_CHARS = 500;
+
+const ALLOWED_LINK_DOMAINS = [
+  "pmlp.gov.lv",
+  "latvija.gov.lv",
+  "rigassatiksme.lv",
+  "ss.lv",
+  "rtu.lv",
+  "lu.lv",
+  "rsu.lv",
+  "vid.gov.lv",
+  "letonyasayfam.com",
+  "instagram.com",
+  "revolut.me",
+];
+
+function isAllowedHref(href?: string): boolean {
+  if (!href) return false;
+  try {
+    const url = new URL(href);
+    if (url.protocol !== "https:") return false;
+    return ALLOWED_LINK_DOMAINS.some(
+      (d) => url.hostname === d || url.hostname.endsWith(`.${d}`),
+    );
+  } catch {
+    return false;
+  }
+}
+
+const WELCOME: Message = {
+  role: "assistant",
+  isLocal: true,
+  content:
+    "Sveiki! Hello! Merhaba! 👋\n\nI am **Letonya Sayfam AI**, your guide to living, studying, and handling bureaucracy in Latvia. Feel free to ask your questions in English, Turkish, Latvian, or any language you prefer!",
+};
+
 export default function AIPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content:
-        "Sveiki! Hello! Merhaba! 👋\n\nI am **Letonya Sayfam AI**, your guide to living, studying, and handling bureaucracy in Latvia. Feel free to ask your questions in English, Turkish, Latvian, or any language you prefer!",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  const handleSend = async (textToSend?: string) => {
-    const query = textToSend || input;
-    if (!query.trim() || loading) return;
+  const pushAssistant = (content: string, isError = false) =>
+    setMessages((prev) => [...prev, { role: "assistant", content, isError }]);
 
-    const userMessage: Message = { role: "user", content: query };
+  const handleSend = async (textToSend?: string) => {
+    const query = (textToSend ?? input).trim();
+    if (!query || loading) return;
+
+    const userMessage: Message = { role: "user", content: query.slice(0, MAX_CHARS) };
     const updatedMessages = [...messages, userMessage];
 
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
 
+    const payload = updatedMessages
+      .filter((m) => !m.isError && !m.isLocal)
+      .map(({ role, content }) => ({ role, content }));
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMessages }),
+        body: JSON.stringify({ messages: payload }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
-      if (data.reply) {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: data.reply },
-        ]);
+      if (res.ok && data.reply) {
+        pushAssistant(data.reply);
       } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: data.error || "An unexpected error occurred. Please try again.",
-          },
-        ]);
+        pushAssistant(data.error || "An unexpected error occurred. Please try again.", true);
       }
     } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Connection error. Please check your network and try again.",
-        },
-      ]);
+      pushAssistant("Connection error. Please check your network and try again.", true);
     } finally {
       setLoading(false);
     }
@@ -88,15 +108,16 @@ export default function AIPage() {
     setMessages([
       {
         role: "assistant",
-        content:
-          "Chat cleared. Feel free to ask your next question about Latvia!",
+        isLocal: true,
+        content: "Chat cleared. Feel free to ask your next question about Latvia!",
       },
     ]);
   };
 
+  const hasConversation = messages.some((m) => m.role === "user");
+
   return (
     <div className="flex flex-col h-[100dvh] bg-[#f8fafc] overflow-hidden">
-      {/* Top Header */}
       <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-black/5 shadow-2xs shrink-0">
         <div className="flex items-center gap-2.5">
           <Link
@@ -118,15 +139,13 @@ export default function AIPage() {
               <h1 className="text-sm font-black text-black leading-tight flex items-center gap-1">
                 Letonya Sayfam <span className="text-[#800000]">AI</span>
               </h1>
-              <p className="text-[10px] text-zinc-400">
-                Latvia Guide & Assistant
-              </p>
+              <p className="text-[10px] text-zinc-400">Latvia Guide & Assistant</p>
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          {messages.length > 2 && (
+          {hasConversation && (
             <button
               onClick={handleClearChat}
               className="text-xs text-zinc-400 hover:text-zinc-600 px-2 py-1 rounded-lg hover:bg-zinc-100 transition flex items-center gap-1"
@@ -151,9 +170,7 @@ export default function AIPage() {
           <div className="flex items-center gap-2.5 min-w-0">
             <span className="text-lg bg-amber-100 p-1.5 rounded-lg shrink-0">☕</span>
             <div className="truncate">
-              <p className="text-xs font-bold text-amber-950 truncate">
-                Letonya Sayfam AI is free
-              </p>
+              <p className="text-xs font-bold text-amber-950 truncate">Letonya Sayfam AI is free</p>
               <p className="text-[10px] text-amber-700 hidden sm:block truncate">
                 Support server & AI API costs via Revolut
               </p>
@@ -172,17 +189,14 @@ export default function AIPage() {
 
       <div className="flex-1 overflow-y-auto px-4 py-4 max-w-2xl w-full mx-auto space-y-3">
         {messages.map((m, idx) => (
-          <div
-            key={idx}
-            className={`flex ${
-              m.role === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
+          <div key={idx} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
               className={`max-w-[88%] md:max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-2xs ${
                 m.role === "user"
                   ? "bg-[#800000] text-white rounded-br-none"
-                  : "bg-white text-zinc-800 border border-black/5 rounded-bl-none"
+                  : m.isError
+                    ? "bg-red-50 text-red-800 border border-red-200 rounded-bl-none"
+                    : "bg-white text-zinc-800 border border-black/5 rounded-bl-none"
               }`}
             >
               {m.role === "user" ? (
@@ -190,14 +204,19 @@ export default function AIPage() {
               ) : (
                 <ReactMarkdown
                   components={{
-                    a: ({ ...props }) => (
-                      <a
-                        {...props}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-[10px] bg-white text-[#800000] border border-[#800000]/20 font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs leading-none"
-                      />
-                    ),
+                    a: ({ href, children }) =>
+                      isAllowedHref(href) ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#800000] font-semibold underline underline-offset-2 break-words"
+                        >
+                          {children}
+                        </a>
+                      ) : (
+                        <span className="font-semibold">{children}</span>
+                      ),
                     p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
                     ul: ({ children }) => (
                       <ul className="list-disc pl-4 space-y-1 mb-2 last:mb-0">{children}</ul>
@@ -242,7 +261,7 @@ export default function AIPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask anything about Latvia..."
-            maxLength={500}
+            maxLength={MAX_CHARS}
             className="flex-1 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-base md:text-sm text-black placeholder-zinc-400 focus:outline-none focus:border-[#800000] focus:bg-white transition"
           />
           <button

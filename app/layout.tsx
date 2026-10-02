@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     "turku kopiena Latvijā",
     "Riga Turkish community",
     "Baltık Türk dijital platform",
-    "Latvia Turkish influencer",
+    "Latvia Turk influencer",
     "Latvia social media",
     "Instagram Reels Latvia",
     "TikTok Latvia",
@@ -89,6 +90,9 @@ export const metadata: Metadata = {
     apple: "/logo.jpg",
     shortcut: "/favicon.ico",
   },
+  other: {
+    "theme-color": "#800000",
+  },
 };
 
 export default function RootLayout({
@@ -99,9 +103,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#800000" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -151,12 +152,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.addEventListener('unload', function () {});`,
-          }}
-        />
         <AntdRegistry>{children}</AntdRegistry>
+        <Analytics />
       </body>
     </html>
   );
