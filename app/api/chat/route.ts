@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { sanitizeInput, hasAdvancedInjection, MAX_USER_CHARS } from "@/lib/secureInput";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import { findRelevantKnowledge, formatKnowledge } from "@/lib/knowledge";
+import { logChat } from "@/lib/chatLog";
 
 const MODEL = process.env.AI_MODEL || "openai/gpt-4o-mini";
 const HISTORY_LIMIT = 10;
@@ -10,6 +12,7 @@ const MAX_ASSISTANT_CHARS = 2000;
 const ALLOWED_ROLES = new Set(["user", "assistant"]);
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+type ModelMessage = { role: "system" | "user" | "assistant"; content: string };
 
 const SYSTEM_PROMPT = `
 You are "Letonya Sayfam AI", a courteous and precise assistant for life in Latvia: bureaucracy and residence permits (PMLP), higher education (RTU, LU, RSU etc.), apartment rentals (ss.lv), public transport and daily life.
@@ -25,8 +28,25 @@ You are "Letonya Sayfam AI", a courteous and precise assistant for life in Latvi
 - NEVER invent numbers (fees, prices, processing times), route numbers, schedules, addresses, phone numbers or URLs. If you are not sure, say so in one sentence and point to the official source.
 - Keep answers short and structured: **bold** for key terms, short bullet lists, around 200 words unless the user asks for more detail.
 
+## 2b. Directions and routes (strict)
+- For any "how do I get from A to B" question, FIRST restate the direction in one line, e.g. "**A → B**". Read carefully which place is the origin and which is the destination.
+- NEVER state bus/tram/trolleybus numbers, stop names, walking times or distances unless they appear word-for-word in VERIFIED KNOWLEDGE. This rule holds even if the user asks repeatedly ("which bus?", "which stop?").
+- Instead, ALWAYS give a Google Maps transit link with origin and destination filled in:
+  https://www.google.com/maps/dir/?api=1&origin=ORIGIN+Riga&destination=DESTINATION+Riga&travelmode=transit
+  (replace spaces with +). Also mention the Rīgas satiksme app for live times.
+- You may share general geography only if it appears in VERIFIED KNOWLEDGE.
+
+Example:
+User: "Origo'dan Riga Plaza'ya nasıl giderim?"
+Assistant: "**Origo → Riga Plaza**
+Güncel hatları, binmeniz ve inmeniz gereken durakları en doğru şekilde buradan görebilirsiniz:
+[Google Maps yol tarifi](https://www.google.com/maps/dir/?api=1&origin=Origo+Riga&destination=Riga+Plaza+Riga&travelmode=transit)
+Canlı sefer saatleri için Rīgas satiksme uygulamasını da kullanabilirsiniz."
+User: "Hangi otobüs?"
+Assistant: "Hat numaralarını doğrulanmış olarak bilmediğim için tahmin vermek istemem; yanlış otobüse binmenize sebep olabilir. Yukarıdaki Google Maps linki size tam hattı, binilecek ve inilecek durağı gösterecektir."
+
 ## 3. Links
-- Only link to official or well-known sources: pmlp.gov.lv, latvija.gov.lv, rigassatiksme.lv, ss.lv, rtu.lv, lu.lv, rsu.lv, vid.gov.lv, letonyasayfam.com, and links explicitly given in this prompt.
+- Only link to official or well-known sources: pmlp.gov.lv, latvija.gov.lv, rigassatiksme.lv, ss.lv, rtu.lv, lu.lv, rsu.lv, vid.gov.lv, letonyasayfam.com, google.com/maps, and links explicitly given in this prompt.
 - Do not guess deep links. If unsure about the exact page, link the homepage.
 
 ## 4. Scope
@@ -92,6 +112,46 @@ function rigaDate(): string {
   });
 }
 
+const VEHICLE =
+  "otob[uü]s\\w*|tramvay\\w*|troleyb[uü]s\\w*|bus(es)?|tram|trolleybus|autobus\\w*|tramvaj\\w*|trolejbus\\w*|автобус\\w*|трамва\\w*|троллейбус\\w*";
+const NUMBER_BEFORE = new RegExp(`\\b(\\d{1,3})\\b[^\\n\\d]{0,15}?(${VEHICLE})`, "gi");
+const NUMBER_AFTER = new RegExp(`(${VEHICLE})[^\\n\\d]{0,15}?\\b(\\d{1,3})\\b`, "gi");
+
+function findUnverifiedRouteNumbers(reply: string, knowledgeText: string): string[] {
+  const found = new Set<string>();
+  for (const m of reply.matchAll(NUMBER_BEFORE)) found.add(m[1]);
+  for (const m of reply.matchAll(NUMBER_AFTER)) found.add(m[m.length - 1]);
+  return [...found].filter((n) => !new RegExp(`\\b${n}\\b`).test(knowledgeText));
+}
+
+async function callModel(messages: ModelMessage[]): Promise<string> {
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      "HTTP-Referer": "https://letonyasayfam.com",
+      "X-Title": "Letonya Sayfam AI",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      temperature: 0.2,
+      top_p: 0.9,
+      max_tokens: 700,
+      messages,
+    }),
+    signal: AbortSignal.timeout(30_000),
+  });
+
+  if (!response.ok) {
+    const errText = await response.text().catch(() => "");
+    throw new Error(`OpenRouter ${response.status}: ${errText.slice(0, 300)}`);
+  }
+
+  const data = await response.json();
+  return data.choices?.[0]?.message?.content?.trim() || "";
+}
+
 export async function POST(req: Request) {
   try {
     const ip = getClientIp(req);
@@ -131,44 +191,47 @@ export async function POST(req: Request) {
       );
     }
 
-    const recentUserText = history
-      .filter((m) => m.role === "user")
+    const userQuestions = history.filter((m) => m.role === "user");
+    const recentUserText = userQuestions
       .slice(-2)
       .map((m) => m.content)
       .join(" ");
 
-    const knowledge = formatKnowledge(findRelevantKnowledge(recentUserText));
+    const kbEntries = findRelevantKnowledge(recentUserText);
+    const knowledge = formatKnowledge(kbEntries);
     const systemContent = `Today's date: ${rigaDate()} (Europe/Riga).\n\n${SYSTEM_PROMPT}${knowledge}`;
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://letonyasayfam.com",
-        "X-Title": "Letonya Sayfam AI",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        temperature: 0.2,
-        top_p: 0.9,
-        max_tokens: 700,
-        messages: [{ role: "system", content: systemContent }, ...history],
-      }),
-      signal: AbortSignal.timeout(30_000),
-    });
+    const modelMessages: ModelMessage[] = [{ role: "system", content: systemContent }, ...history];
 
-    if (!response.ok) {
-      const errText = await response.text().catch(() => "");
-      console.error("OpenRouter Gateway Error:", response.status, errText.slice(0, 300));
+    let reply: string;
+    let routeGuardTriggered = false;
+
+    try {
+      reply = await callModel(modelMessages);
+
+      const unverified = findUnverifiedRouteNumbers(reply, knowledge);
+      if (unverified.length > 0) {
+        routeGuardTriggered = true;
+        console.warn(`[ROUTE GUARD] Unverified route numbers: ${unverified.join(", ")}`);
+
+        reply = await callModel([
+          ...modelMessages,
+          { role: "assistant", content: reply },
+          {
+            role: "user",
+            content:
+              `INTERNAL CHECK (not from the user): your answer mentions route numbers (${unverified.join(", ")}) that are not in VERIFIED KNOWLEDGE. ` +
+              "Rewrite the answer in the same language as the user's question WITHOUT any route numbers, stop names or walking times, and include the Google Maps transit link instead.",
+          },
+        ]);
+      }
+    } catch (err) {
+      console.error("OpenRouter Gateway Error:", err);
       return NextResponse.json(
         { error: "The AI service is temporarily unavailable. Please try again shortly." },
         { status: 502 },
       );
     }
-
-    const data = await response.json();
-    const reply: string = data.choices?.[0]?.message?.content?.trim() || "";
 
     if (!reply) {
       return NextResponse.json(
@@ -177,7 +240,21 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json({ reply });
+    const logId = randomUUID();
+
+    await logChat({
+      id: logId,
+      ts: new Date().toISOString(),
+      question: last.content,
+      previousQuestion:
+        userQuestions.length > 1 ? userQuestions[userQuestions.length - 2].content : "",
+      answer: reply.slice(0, 2000),
+      knowledge: kbEntries.map((e) => e.id),
+      routeGuard: routeGuardTriggered,
+      model: MODEL,
+    });
+
+    return NextResponse.json({ reply, id: logId });
   } catch (error) {
     console.error("Internal Chat Route Exception:", error);
     return NextResponse.json(

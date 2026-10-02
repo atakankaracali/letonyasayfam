@@ -33,6 +33,7 @@ const ALLOWED_LINK_DOMAINS = [
   "letonyasayfam.com",
   "instagram.com",
   "revolut.me",
+  "google.com",
 ];
 
 function isAllowedHref(href?: string): boolean {
