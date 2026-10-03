@@ -119,49 +119,51 @@ export default function AIPage() {
 
   return (
     <div className="flex flex-col h-[100dvh] bg-[#f8fafc] overflow-hidden">
-      <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-black/5 shadow-2xs shrink-0">
-        <div className="flex items-center gap-2.5">
+      <header className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2.5 bg-white border-b border-black/5 shadow-2xs shrink-0">
+        <div className="flex items-center gap-2 min-w-0">
           <Link
             href="/home"
-            className="p-1.5 rounded-xl text-zinc-500 hover:text-black hover:bg-zinc-100 transition"
-            title="Back to Home"
+            className="p-1.5 -ml-1 rounded-xl text-zinc-500 hover:text-black hover:bg-zinc-100 transition shrink-0"
+            aria-label="Back to Home"
           >
             <ArrowLeftOutlined className="text-base" />
           </Link>
-          <div className="flex items-center gap-2.5">
-            <Image
-              src="/logo.jpg"
-              alt="Letonya Sayfam"
-              width={32}
-              height={32}
-              className="rounded-full shadow-2xs"
-            />
-            <div>
-              <h1 className="text-sm font-black text-black leading-tight flex items-center gap-1">
-                Letonya Sayfam <span className="text-[#800000]">AI</span>
-              </h1>
-              <p className="text-[10px] text-zinc-400">Latvia Guide & Assistant</p>
-            </div>
+          <Image
+            src="/logo.jpg"
+            alt="Letonya Sayfam"
+            width={32}
+            height={32}
+            className="rounded-full shadow-2xs shrink-0"
+          />
+          <div className="min-w-0">
+            <h1 className="text-sm font-black text-black leading-tight truncate">
+              Letonya Sayfam <span className="text-[#800000]">AI</span>
+            </h1>
+            <p className="text-[10px] text-zinc-400 truncate">Latvia Guide & Assistant</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 shrink-0">
           {hasConversation && (
             <button
               onClick={handleClearChat}
-              className="text-xs text-zinc-400 hover:text-zinc-600 px-2 py-1 rounded-lg hover:bg-zinc-100 transition flex items-center gap-1"
+              aria-label="Clear chat"
+              title="Clear chat"
+              className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-600 p-2 sm:px-2 sm:py-1 rounded-lg hover:bg-zinc-100 transition"
             >
-              <ClearOutlined /> Clear
+              <ClearOutlined />
+              <span className="hidden sm:inline">Clear</span>
             </button>
           )}
           <a
             href="https://revolut.me/atakaneae4"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1 text-xs bg-[#FFA800]/15 text-[#b37400] font-bold px-2.5 py-1.5 rounded-xl hover:bg-[#FFA800]/25 transition"
+            aria-label="Support Letonya Sayfam AI on Revolut"
+            className="flex items-center gap-1 text-xs bg-[#FFA800]/15 text-[#b37400] font-bold p-2 sm:px-2.5 sm:py-1.5 rounded-xl hover:bg-[#FFA800]/25 transition"
           >
             <CoffeeOutlined />
-            <span>Support</span>
+            <span className="hidden sm:inline">Support</span>
           </a>
         </div>
       </header>
