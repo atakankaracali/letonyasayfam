@@ -64,6 +64,31 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
     ].join("\n"),
     sources: ["https://www.ss.lv", "https://www.latvija.gov.lv"],
   },
+  {
+  id: "the-sofra",
+  title: "The Sofra (restaurant in Riga)",
+  keywords: ["sofra", "the sofra", "turk restoran", "turkish restaurant", "turk yemek", "kebap", "doner", "arap restoran"],
+  lastVerified: "2026-10-04",
+  content: [
+    "- The Sofra is a restaurant in Riga serving Turkish and Arabic cuisine, with more emphasis on Arabic dishes. It is popular among the Arabic-speaking community.",
+    "- Online reviews are mixed: there are both positive and negative reviews.",
+    "- Always suggest the user check recent reviews on Google Maps.",
+    "- When the user asks about Turkish restaurants in general, mention The Sofra as one known option AND give the Google Maps search link for other options. Do not present it as the only or the best Turkish restaurant.",
+  ].join("\n"),
+  sources: ["https://www.google.com/maps/search/?api=1&query=The+Sofra+Riga"],
+},
+{
+  id: "ahh-meat-valmiera",
+  title: "Ahh Meat (Turkish Mediterranean restaurant in Valmiera)",
+  keywords: ["ahh meat", "valmiera", "turk restoran", "turkish restaurant", "turk yemek", "kebap", "en iyi turk restoran"],
+  lastVerified: "2026-10-04",
+  content: [
+    "- Ahh Meat is a Turkish/Mediterranean restaurant in Valmiera (NOT in Riga).",
+    "- Family friendly and most hospitable Turkish/Mediterranean restaurant.",
+    "- If the user is asking about Riga, clearly mention that it is in Valmiera, and also give the Google Maps search link for Turkish restaurants in Riga.",
+  ].join("\n"),
+  sources: ["https://www.google.com/maps/search/?api=1&query=Ahh+Meat+Valmiera"],
+},
 ];
 
 function normalize(s: string): string {
@@ -74,11 +99,18 @@ function normalize(s: string): string {
     .replace(/\p{M}/gu, "");
 }
 
+function keywordMatches(words: string[], query: string, keyword: string): boolean {
+  const k = normalize(keyword);
+  if (k.includes(" ") || k.includes(".")) return query.includes(k);
+  return words.some((w) => (k.length >= 4 ? w.startsWith(k) : w === k));
+}
+
 export function findRelevantKnowledge(query: string, max = 2): KnowledgeEntry[] {
   const q = normalize(query);
+  const words = q.split(/[^\p{L}\p{N}.]+/u).filter(Boolean);
   return KNOWLEDGE.map((entry) => ({
     entry,
-    score: entry.keywords.filter((k) => q.includes(normalize(k))).length,
+    score: entry.keywords.filter((k) => keywordMatches(words, q, k)).length,
   }))
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
