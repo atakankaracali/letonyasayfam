@@ -74,7 +74,7 @@ const WELCOME: Message = {
   role: "assistant",
   isLocal: true,
   content:
-    "Sveiki! Hello! Merhaba! 👋\n\nI am **Letonya Sayfam AI**, your guide to living, studying, and handling bureaucracy in Latvia. Feel free to ask your questions in English, Turkish, Latvian, or any language you prefer!",
+    "Sveiki! Hello! Merhaba! 👋\n\nI am **Letonya Sayfam AI**, your digital guide to life in Latvia. Ask me about studying, daily life, transport, documents, restaurants, local services, or anything else about Latvia.\n\nYou can ask in Turkish, English, Latvian, or any language you prefer.",
 };
 
 export default function AIPage() {

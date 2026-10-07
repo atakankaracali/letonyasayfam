@@ -6,82 +6,115 @@ export const translations = {
   en: {
     nav: {
       social: "Social",
-      vision: "Vision",
+      vision: "About Us",
       services: "Services",
       partners: "Partners",
       contact: "Contact",
     },
     hero: {
-      tagline: "Latvia's largest Turkish digital platform.",
+      tagline: "Connecting Latvia with the Turkish-Speaking Community.",
     },
     social: {
       sectionLabel: "Social Media",
     },
     vision: {
-      badge: "Vision",
-      title: "Authority in the Baltic Market",
-      subtitle: "The strongest digital bridge built between Latvia and Turkey.",
-      badge2: "The #1 Reference Point in the Region",
-      cardTitle: "Market Power",
-      cardQuote: "We reach 90% of the Baltic Turkish demographic.",
+      badge: "About Us",
+      title: "More Than a Social Media Page",
+      subtitle:
+        "We connect local businesses, students, families and the Turkish-speaking community living in Latvia.",
+
+      description:
+        "Letonya Sayfam is a Latvia-based page built around the Turkish-speaking community. We share everyday life, restaurants, places to visit, student life and useful information about Latvia, while helping local businesses reach a community that is growing every day. Our audience includes people from Turkey, Azerbaijan, Uzbekistan, Kazakhstan and other countries, as well as students and families who are new to Latvia. What started as a social media page has grown into a place where people come to discover Latvia, ask questions and find useful local recommendations.",
+
+      badge2: "A Growing Digital Community",
+      cardTitle: "Our Community",
+      cardQuote:
+        "People come to us not only to watch content, but also to discover where to eat, what to do and how to experience life in Latvia.",
     },
     stats: {
-      title: "Mass Reach & Impact",
-      monthlyReach: "Monthly Average Reach",
-      growthTitle: "Sustainable Growth",
-      growthDesc:
-        'LetonyaSayfam holds the highest organic reach numbers in Latvia-based content production. Our target audience is not just "followers", they are a loyal "community".',
-      growthQuote:
-        '"We directly reach 90% of the Turkish demographic in the Baltic market."',
-    },
-    languages: {
-      sectionTitle: "Global Standards: Multilingual Communication",
+      title: "A Growing Community With Real Reach",
+      description:
+        "Letonya Sayfam and AKA in Europe are digital media platforms connecting local businesses with a growing Turkish-speaking community living, studying and exploring Latvia.",
       items: [
         {
-          title: "English",
-          desc: "Default communication language for the global business world and international audience.",
+          value: "6K+",
+          title: "Instagram Followers",
         },
         {
+          value: "365K+",
+          title: "Monthly Instagram Views",
+        },
+        {
+          value: "8.5K+",
+          title: "Followers Across Platforms",
+        },
+        {
+          value: "4",
+          title: "Active Platforms",
+        },
+      ],
+      communityText:
+        "Our audience includes Turkish-speaking residents, students and families from Turkey, Azerbaijan, Uzbekistan, Kazakhstan and other countries. New students and their families also turn to us for recommendations about restaurants, local life and experiences in Latvia.",
+    },
+    languages: {
+      sectionTitle: "One Community, Multiple Languages",
+      items: [
+        {
           title: "Turkish",
-          desc: "The cornerstone of the deep cultural connection with our core audience.",
+          desc: "Our primary content language and the main connection with our community.",
+        },
+        {
+          title: "English",
+          desc: "For international students, businesses and partners in Latvia.",
         },
         {
           title: "Latvian",
-          desc: "An integrated and professional bond with local people and institutions.",
+          desc: "Helping us connect with local businesses, institutions and the wider Latvian community.",
         },
       ],
     },
     services: {
-      sectionTitle: "Service Portfolio",
+      sectionTitle: "What We Do",
       columns: {
-        category: "Category",
-        detail: "Detail",
-        impact: "Impact",
+        category: "Service",
+        detail: "What We Provide",
+        impact: "Purpose",
       },
       items: [
         {
           key: "1",
-          category: "Digital Ad & Branding",
-          detail: "Reels/TikTok production.",
-          impact: "Viral",
+          category: "Media & Promotion",
+          detail:
+            "Short-form video production and promotion across Instagram, TikTok, YouTube and Facebook.",
+          impact: "Reach",
         },
         {
           key: "2",
-          category: "Market Consulting",
-          detail: "Latvia market analysis.",
-          impact: "Strategy",
+          category: "Website & Digital",
+          detail:
+            "Website design, development, deployment and ongoing digital support.",
+          impact: "Digital",
         },
         {
           key: "3",
-          category: "Event Partnerships",
-          detail: "Event promotions.",
-          impact: "Physical",
+          category: "Student & Family Support",
+          detail:
+            "Airport pickup, city tours and practical support for newcomers to Latvia.",
+          impact: "Welcome",
         },
         {
           key: "4",
-          category: "Corporate PR",
-          detail: "Corporate representation in three languages.",
-          impact: "Prestige",
+          category: "Local Experiences",
+          detail:
+            "Restaurant, café, activity and local experience discovery for our community.",
+          impact: "Discovery",
+        },
+        {
+          key: "5",
+          category: "Business Partnerships",
+          detail:
+            "Content campaigns and collaborations connecting local businesses with our community.",
+          impact: "Growth",
         },
       ],
     },
@@ -97,22 +130,22 @@ export const translations = {
     packages: {
       sectionLabel: "What We Offer",
       sectionTitle: "Our Packages",
-      note: "All prices in EUR. Custom projects available on request.",
+      note: "All prices are in EUR. Custom projects are available on request.",
       items: [
         {
-          title: "Reels: All 4 Platforms",
-          desc: "Maximum reach across Instagram, TikTok, YouTube Shorts and Facebook Reels simultaneously.",
+          title: "Reel: All 4 Platforms",
+          desc: "Professional short-form video published across Instagram, TikTok, YouTube Shorts and Facebook Reels.",
           tags: ["Instagram", "TikTok", "YouTube", "Facebook"],
         },
         {
-          title: "Reels: Single Platform",
-          desc: "High-impact short-form video content for one platform of your choice.",
-          tags: ["1 Platform", "Viral", "Short Video"],
+          title: "Reel: Single Platform",
+          desc: "Professional short-form video content published on one platform of your choice.",
+          tags: ["1 Platform", "Short Video", "Promotion"],
         },
         {
-          title: "Story Package (3 Stories)",
-          desc: "Engaging Instagram Stories crafted to boost visibility and drive direct traffic.",
-          tags: ["3 Stories", "24h Visibility", "Instagram"],
+          title: "Story Package: 3 Stories",
+          desc: "Three Instagram Stories designed to increase visibility and drive direct attention to your business.",
+          tags: ["3 Stories", "Instagram", "Promotion"],
         },
         {
           title: "Single Story",
@@ -121,28 +154,27 @@ export const translations = {
         },
         {
           title: "YouTube Long Video",
-          desc: "In-depth YouTube content production, ideal for detailed business or location features.",
+          desc: "In-depth YouTube content production for detailed business, restaurant or location features.",
           tags: ["YouTube", "Long Form", "In-Depth"],
         },
         {
           title: "Special Trip / Repeated Coverage",
-          desc: "Multi-visit content production for ongoing projects, trips, or recurring features.",
+          desc: "Multi-visit content production for ongoing projects, trips or recurring features.",
           tags: ["Multi-Visit", "Custom", "Extended Coverage"],
         },
         {
           title: "Opening & Special Days",
-          desc: "Professional video production for grand openings, events, and special occasions.",
+          desc: "Professional video production for grand openings, events and special occasions.",
           tags: ["Opening", "Event", "Special Day"],
         },
         {
-          title: "Same Day Video Delivery",
+          title: "Same-Day Video Delivery",
           desc: "Add-on for urgent same-day content delivery on any package.",
           tags: ["Add-On", "Urgent", "Same Day"],
         },
       ],
-      customNote: "Other custom projects, price on request.",
-      websiteNote:
-        "Website Design: includes 1 year domain & support",
+      customNote: "Other custom projects are available on request.",
+      websiteNote: "Website Design: includes 1 year of domain and support",
     },
     form: {
       sectionLabel: "Work With Us",
@@ -154,8 +186,8 @@ export const translations = {
       service: "Service Type",
       servicePlaceholder: "Select a service",
       serviceOptions: [
-        "Reels: All 4 Platforms",
-        "Reels: Single Platform",
+        "Reel: All 4 Platforms",
+        "Reel: Single Platform",
         "Story Package: 3 Stories",
         "Single Story",
         "YouTube Long Video",
@@ -163,6 +195,8 @@ export const translations = {
         "Opening & Special Days",
         "Same-Day Video Delivery",
         "Website Design",
+        "Airport Pickup / City Tour",
+        "Student & Family Support",
         "Other / Custom",
       ],
       message: "Your Message",
@@ -174,88 +208,121 @@ export const translations = {
 
   tr: {
     nav: {
-      social: "Sosyal",
-      vision: "Vizyon",
+      social: "Sosyal Medya",
+      vision: "Hakkımızda",
       services: "Hizmetler",
-      partners: "Ortaklar",
+      partners: "İş Ortakları",
       contact: "İletişim",
     },
     hero: {
-      tagline: "Letonya'nın en büyük Türk dijital platformu.",
+      tagline: "Letonya'yı Türkçe Konuşan Toplulukla Buluşturuyoruz.",
     },
     social: {
       sectionLabel: "Sosyal Medya",
     },
     vision: {
-      badge: "Vizyon",
-      title: "Baltık Pazarında Otorite",
-      subtitle: "Letonya ve Türkiye arasında kurulan en güçlü dijital köprü.",
-      badge2: "Bölgedeki 1 Numaralı Referans Noktası",
-      cardTitle: "Pazar Gücü",
-      cardQuote: "Baltık Türk demografisinin %90'ına ulaşıyoruz.",
+      badge: "Hakkımızda",
+      title: "Bir Sosyal Medya Sayfasından Daha Fazlası",
+      subtitle:
+        "Yerel işletmeleri, öğrencileri, aileleri ve Letonya'da yaşayan Türkçe konuşan topluluğu birbirine bağlıyoruz.",
+
+      description:
+        "Letonya Sayfam, Letonya'daki Türkçe konuşan topluluk için oluşturulmuş bir sayfadır. Letonya'daki günlük yaşamı, restoranları, gezilecek yerleri, öğrenci hayatını ve faydalı bilgileri paylaşırken, yerel işletmelerin de büyüyen bu topluluğa ulaşmasına yardımcı oluyoruz. Kitlemiz Türkiye'nin yanı sıra Azerbaycan, Özbekistan, Kazakistan ve diğer ülkelerden gelen Türkçe konuşan kişilerden, öğrencilerden ve Letonya'ya yeni gelen ailelerden oluşuyor. Bir sosyal medya sayfası olarak başlayan Letonya Sayfam, bugün insanların Letonya'yı keşfetmek, soru sormak ve yerel öneriler bulmak için başvurduğu bir topluluğa dönüştü.",
+
+      badge2: "Büyüyen Bir Dijital Topluluk",
+      cardTitle: "Topluluğumuz",
+      cardQuote:
+        "İnsanlar bize yalnızca içerik izlemek için değil, nerede yemek yiyeceklerini, ne yapabileceklerini ve Letonya'da hayatı nasıl keşfedebileceklerini öğrenmek için de geliyor.",
     },
     stats: {
-      title: "Kitlesel Erişim ve Etki Gücü",
-      monthlyReach: "Aylık Ortalama Erişim",
-      growthTitle: "Sürdürülebilir Büyüme",
-      growthDesc:
-        'LetonyaSayfam, Letonya merkezli içerik üretiminde en yüksek organik erişim rakamlarına sahip platformdur. Hedef kitlemiz sadece "takipçi" değil, sadık bir "topluluktur".',
-      growthQuote:
-        '"Baltık pazarındaki Türk demografisinin %90\'ına doğrudan ulaşıyoruz."',
-    },
-    languages: {
-      sectionTitle: "Global Standartlar: Çok Dilli İletişim",
+      title: "Büyüyen Bir Topluluk, Gerçek Erişim",
+      description:
+        "Letonya Sayfam ve AKA in Europe, Letonya'da yaşayan, eğitim gören ve ülkeyi keşfeden Türkçe konuşan topluluk ile yerel işletmeleri buluşturan dijital medya platformlarıdır.",
       items: [
         {
-          title: "İngilizce",
-          desc: "Global iş dünyası ve uluslararası kitle için varsayılan iletişim dili.",
+          value: "6K+",
+          title: "Instagram Takipçisi",
         },
         {
+          value: "365K+",
+          title: "Aylık Instagram Görüntülenmesi",
+        },
+        {
+          value: "8.5K+",
+          title: "Platformlar Genelinde Takipçi",
+        },
+        {
+          value: "4",
+          title: "Aktif Platform",
+        },
+      ],
+      communityText:
+        "Kitlemiz; Türkiye, Azerbaycan, Özbekistan, Kazakistan ve diğer ülkelerden Letonya'da yaşayan Türkçe konuşan kişiler, öğrenciler ve ailelerden oluşmaktadır. Yeni gelen öğrenciler ve velileri, restoranlar, şehir yaşamı ve yerel deneyimler hakkında öneriler almak için de bize ulaşmaktadır.",
+    },
+    languages: {
+      sectionTitle: "Tek Topluluk, Birden Fazla Dil",
+      items: [
+        {
           title: "Türkçe",
-          desc: "Ana kitlemizle kurulan derin ve kültürel bağın temel taşı.",
+          desc: "Ana içerik dilimiz ve topluluğumuzla kurduğumuz temel iletişim.",
+        },
+        {
+          title: "İngilizce",
+          desc: "Letonya'daki uluslararası öğrenciler, işletmeler ve iş ortaklarımız için.",
         },
         {
           title: "Letonca",
-          desc: "Yerel halk ve kurumlarla kurulan entegre ve profesyonel bağ.",
+          desc: "Yerel işletmeler, kurumlar ve Letonya'daki daha geniş kitleyle iletişim kurmak için.",
         },
       ],
     },
     services: {
-      sectionTitle: "Hizmet Portfolyosu",
+      sectionTitle: "Neler Yapıyoruz?",
       columns: {
-        category: "Kategori",
-        detail: "Detay",
-        impact: "Etki",
+        category: "Hizmet",
+        detail: "Sunduğumuz Hizmet",
+        impact: "Amaç",
       },
       items: [
         {
           key: "1",
-          category: "Dijital Reklam & Marka",
-          detail: "Reels/TikTok prodüksiyonu.",
-          impact: "Viral",
+          category: "Medya & Tanıtım",
+          detail:
+            "Instagram, TikTok, YouTube ve Facebook için kısa video prodüksiyonu ve tanıtım.",
+          impact: "Erişim",
         },
         {
           key: "2",
-          category: "Pazar Danışmanlığı",
-          detail: "Letonya pazar analizi.",
-          impact: "Strateji",
+          category: "Web & Dijital",
+          detail:
+            "Web sitesi tasarımı, geliştirme, yayına alma ve dijital destek.",
+          impact: "Dijital",
         },
         {
           key: "3",
-          category: "Etkinlik Ortaklıkları",
-          detail: "Etkinlik tanıtımları.",
-          impact: "Fiziksel",
+          category: "Öğrenci & Aile Desteği",
+          detail:
+            "Letonya'ya yeni gelenler için havaalanı karşılama, şehir turu ve pratik destek.",
+          impact: "Karşılama",
         },
         {
           key: "4",
-          category: "Kurumsal PR",
-          detail: "Üç dilde kurumsal temsil.",
-          impact: "Prestij",
+          category: "Yerel Deneyimler",
+          detail:
+            "Topluluğumuz için restoran, kafe, aktivite ve yerel deneyim keşifleri.",
+          impact: "Keşif",
+        },
+        {
+          key: "5",
+          category: "İş Ortaklıkları",
+          detail:
+            "Yerel işletmeleri topluluğumuzla buluşturan içerik kampanyaları ve iş birlikleri.",
+          impact: "Büyüme",
         },
       ],
     },
     partners: {
-      sectionLabel: "İş Ortaklarımız",
+      sectionLabel: "Güvenilir İş Ortakları",
       sectionTitle: "Birlikte Çalıştığımız Şirketler",
     },
     contact: {
@@ -269,34 +336,34 @@ export const translations = {
       note: "Tüm fiyatlar EUR'dur. Özel projeler talep üzerine hazırlanır.",
       items: [
         {
-          title: "Reels: 4 Platform Birden",
-          desc: "Instagram, TikTok, YouTube Shorts ve Facebook Reels'de eş zamanlı maksimum erişim.",
+          title: "Reel: 4 Platform Birden",
+          desc: "Instagram, TikTok, YouTube Shorts ve Facebook Reels'de yayınlanan profesyonel kısa video içeriği.",
           tags: ["Instagram", "TikTok", "YouTube", "Facebook"],
         },
         {
-          title: "Reels: Tek Platform",
-          desc: "Seçtiğiniz tek platform için yüksek etkili kısa video içeriği.",
-          tags: ["1 Platform", "Viral", "Kısa Video"],
+          title: "Reel: Tek Platform",
+          desc: "Seçtiğiniz tek platform için profesyonel kısa video içeriği ve tanıtım.",
+          tags: ["1 Platform", "Kısa Video", "Tanıtım"],
         },
         {
-          title: "Story Paketi (3 Story)",
-          desc: "Görünürlüğünüzü artıran ve doğrudan trafik çeken etkileyici Instagram Hikayeleri.",
-          tags: ["3 Story", "24s Görünürlük", "Instagram"],
+          title: "Story Paketi: 3 Story",
+          desc: "Görünürlüğünüzü artırmak ve işletmenize doğrudan ilgi çekmek için 3 Instagram Story.",
+          tags: ["3 Story", "Instagram", "Tanıtım"],
         },
         {
-          title: "Tek bir Story",
+          title: "Tek Story",
           desc: "Hızlı görünürlük ve doğrudan tanıtım için tek bir Instagram Story.",
           tags: ["1 Story", "Instagram"],
         },
         {
           title: "YouTube Uzun Video",
-          desc: "Detaylı YouTube içerik prodüksiyonu, işletme veya mekan tanıtımları için ideal.",
+          desc: "İşletme, restoran veya mekan tanıtımları için detaylı YouTube içerik prodüksiyonu.",
           tags: ["YouTube", "Uzun Video", "Detaylı"],
         },
         {
           title: "Özel Gezi / Tekrarlı Çekim",
           desc: "Süregelen projeler, geziler veya tekrarlı içerikler için çok ziyaretli prodüksiyon.",
-          tags: ["Çoklu Ziyaret", "Özel", "Genişletilmiş İçerik"],
+          tags: ["Çoklu Ziyaret", "Özel", "Genişletilmiş"],
         },
         {
           title: "Açılış & Özel Günler",
@@ -305,13 +372,12 @@ export const translations = {
         },
         {
           title: "Aynı Gün Video Teslimi",
-          desc: "Herhangi bir pakete aynı gün acil teslimat eklentisi.",
+          desc: "Herhangi bir pakete acil aynı gün video teslimi eklenebilir.",
           tags: ["Ek Hizmet", "Acil", "Aynı Gün"],
         },
       ],
-      customNote: "Diğer özel projeler, fiyat talep üzerine belirlenir.",
-      websiteNote:
-        "Web Sitesi: 1 yıllık domain ve destek dahil",
+      customNote: "Diğer özel projeler için fiyat talep üzerine belirlenir.",
+      websiteNote: "Web Sitesi: 1 yıllık domain ve destek dahil",
     },
     form: {
       sectionLabel: "Bizimle Çalışın",
@@ -323,20 +389,22 @@ export const translations = {
       service: "Hizmet Türü",
       servicePlaceholder: "Hizmet seçin",
       serviceOptions: [
-        "Reels: 4 Platform Birden",
-        "Reels: Tek Platform",
+        "Reel: 4 Platform Birden",
+        "Reel: Tek Platform",
         "Story Paketi: 3 Story",
-        "Tek bir Story",
+        "Tek Story",
         "YouTube Uzun Video",
         "Özel Gezi / Tekrarlı Çekim",
-        "Açılış ve Özel Günler",
+        "Açılış & Özel Günler",
         "Aynı Gün Video Teslimi",
         "Web Sitesi Tasarımı",
+        "Havaalanı Karşılama / Şehir Turu",
+        "Öğrenci & Aile Desteği",
         "Diğer / Özel",
       ],
       message: "Mesajınız",
-      messagePlaceholder: "Projeniz hakkında bilgi verin...",
-      submit: "Teklif Gönder",
+      messagePlaceholder: "Projeniz hakkında bize bilgi verin...",
+      submit: "Talep Gönder",
       success: "Talebiniz iletildi! En kısa sürede size dönüş yapacağız.",
     },
   },
@@ -344,83 +412,115 @@ export const translations = {
   lv: {
     nav: {
       social: "Sociālie tīkli",
-      vision: "Vīzija",
+      vision: "Par mums",
       services: "Pakalpojumi",
       partners: "Partneri",
       contact: "Kontakti",
     },
     hero: {
-      tagline: "Latvijas lielākā turku kopienas digitālā platforma.",
+      tagline: "Savienojam Latviju ar turku valodā runājošo kopienu.",
     },
     social: {
       sectionLabel: "Sociālie tīkli",
     },
     vision: {
-      badge: "Vīzija",
-      title: "Autoritāte Baltijas tirgū",
+      badge: "Par mums",
+      title: "Vairāk nekā tikai sociālo tīklu lapa",
       subtitle:
-        "Spēcīgākais digitālais tilts starp Latviju un Turciju, izveidots, lai savieno kultūras un veicina biznesa izaugsmi.",
-      badge2: "Reģiona Nr. 1 atsauces platforma",
-      cardTitle: "Tirgus spēks",
+        "Mēs savienojam vietējos uzņēmumus, studentus, ģimenes un Latvijā dzīvojošo turku valodā runājošo kopienu.",
+
+      description:
+        "Letonya Sayfam ir Latvijā izveidota lapa turku valodā runājošajai kopienai. Mēs dalāmies ar informāciju par ikdienas dzīvi Latvijā, restorāniem, vietām, ko apmeklēt, studentu dzīvi un noderīgiem padomiem, kā arī palīdzam vietējiem uzņēmumiem sasniegt augošu kopienu. Mūsu auditorijā ir cilvēki no Turcijas, Azerbaidžānas, Uzbekistānas, Kazahstānas un citām valstīm, kā arī studenti un ģimenes, kas ir nesen ieradušies Latvijā. Tas, kas sākās kā sociālo tīklu lapa, ir kļuvis par vietu, kur cilvēki iepazīst Latviju, uzdod jautājumus un meklē noderīgus vietējos ieteikumus.",
+
+      badge2: "Augoša digitālā kopiena",
+      cardTitle: "Mūsu kopiena",
       cardQuote:
-        "Mēs sasniedzam 90% Baltijas turku kopienas, tieši un uzticami.",
+        "Cilvēki pie mums nāk ne tikai skatīties saturu, bet arī uzzināt, kur paēst, ko darīt un kā iepazīt dzīvi Latvijā.",
     },
     stats: {
-      title: "Masveida sasniedzamība un reāla ietekme",
-      monthlyReach: "Vidējā mēneša sasniedzamība",
-      growthTitle: "Ilgtspējīga izaugsme",
-      growthDesc:
-        "LetonyaSayfam ir platforma ar augstākajiem organiskās sasniedzamības rādītājiem Latvijā veidotā saturā. Mūsu auditorija nav tikai sekotāji, tā ir vienota, lojāla kopiena, kurai uzticaties.",
-      growthQuote: '"Mēs tieši sasniedzam 90% turku kopienas Baltijas tirgū."',
-    },
-    languages: {
-      sectionTitle: "Globālie standarti: daudzvalodu komunikācija",
+      title: "Augoša kopiena ar reālu sasniedzamību",
+      description:
+        "Letonya Sayfam un AKA in Europe ir digitālās mediju platformas, kas savieno vietējos uzņēmumus ar augošu turku valodā runājošu kopienu, kas dzīvo, studē un iepazīst Latviju.",
       items: [
         {
-          title: "Angļu valoda",
-          desc: "Galvenā saziņas valoda starptautiskajai biznesa videi un globālajai auditorijai.",
+          value: "6K+",
+          title: "Instagram sekotāju",
         },
         {
+          value: "365K+",
+          title: "Instagram skatījumu mēnesī",
+        },
+        {
+          value: "8.5K+",
+          title: "Sekotāju visās platformās",
+        },
+        {
+          value: "4",
+          title: "Aktīvas platformas",
+        },
+      ],
+      communityText:
+        "Mūsu auditorijā ir turku valodā runājoši iedzīvotāji, studenti un ģimenes no Turcijas, Azerbaidžānas, Uzbekistānas, Kazahstānas un citām valstīm. Jaunie studenti un viņu ģimenes arī vēršas pie mums pēc ieteikumiem par restorāniem, vietējo dzīvi un pieredzi Latvijā.",
+    },
+    languages: {
+      sectionTitle: "Viena kopiena, vairākas valodas",
+      items: [
+        {
           title: "Turku valoda",
-          desc: "Dziļas kultūras saiknes pamats ar mūsu galveno auditoriju, turku kopienu Baltijā.",
+          desc: "Mūsu galvenā satura valoda un galvenais saziņas veids ar mūsu kopienu.",
+        },
+        {
+          title: "Angļu valoda",
+          desc: "Starptautiskajiem studentiem, uzņēmumiem un partneriem Latvijā.",
         },
         {
           title: "Latviešu valoda",
-          desc: "Profesionāla un integrēta saziņa ar vietējiem iedzīvotājiem, uzņēmumiem un valsts institūcijām.",
+          desc: "Lai veidotu saikni ar vietējiem uzņēmumiem, iestādēm un plašāku Latvijas sabiedrību.",
         },
       ],
     },
     services: {
-      sectionTitle: "Pakalpojumu portfelis",
+      sectionTitle: "Ko mēs darām",
       columns: {
-        category: "Kategorija",
-        detail: "Apraksts",
-        impact: "Ietekme",
+        category: "Pakalpojums",
+        detail: "Ko mēs piedāvājam",
+        impact: "Mērķis",
       },
       items: [
         {
           key: "1",
-          category: "Digitālā reklāma un zīmols",
-          detail: "Reels un TikTok video produkcija.",
-          impact: "Vīrāls",
+          category: "Mediji un reklāma",
+          detail:
+            "Īsformāta video veidošana un reklāma Instagram, TikTok, YouTube un Facebook platformās.",
+          impact: "Sasniedzamība",
         },
         {
           key: "2",
-          category: "Tirgus konsultācijas",
-          detail: "Latvijas tirgus izpēte un analīze.",
-          impact: "Stratēģija",
+          category: "Mājaslapas un digitālie risinājumi",
+          detail:
+            "Mājaslapu dizains, izstrāde, publicēšana un digitālais atbalsts.",
+          impact: "Digitālais",
         },
         {
           key: "3",
-          category: "Pasākumu partnerības",
-          detail: "Pasākumu organizēšana un publicitāte.",
-          impact: "Klātienē",
+          category: "Studentu un ģimeņu atbalsts",
+          detail:
+            "Sagaidīšana lidostā, pilsētas ekskursijas un praktisks atbalsts jaunpienācējiem Latvijā.",
+          impact: "Atbalsts",
         },
         {
           key: "4",
-          category: "Korporatīvais PR",
-          detail: "Profesionāla pārstāvniecība trīs valodās.",
-          impact: "Prestižs",
+          category: "Vietējā pieredze",
+          detail:
+            "Restorānu, kafejnīcu, aktivitāšu un vietējo pieredžu atklāšana mūsu kopienai.",
+          impact: "Atklāšana",
+        },
+        {
+          key: "5",
+          category: "Biznesa partnerības",
+          detail:
+            "Satura kampaņas un sadarbības, kas savieno vietējos uzņēmumus ar mūsu kopienu.",
+          impact: "Izaugsme",
         },
       ],
     },
@@ -429,86 +529,87 @@ export const translations = {
       sectionTitle: "Uzņēmumi, ar kuriem sadarbojamies",
     },
     contact: {
-      title: "Augsim kopā",
-      coffeeText: "Jums patika mūsu saturs? Pacienājiet mūs ar kafiju ☕",
-      coffeeButton: "Pacienā ar Kafiju",
+      title: "Augam kopā",
+      coffeeText: "Patika mūsu saturs? Pacienājiet mūs ar kafiju ☕",
+      coffeeButton: "Pacienāt ar kafiju",
     },
     packages: {
-      sectionLabel: "Ko Mēs Piedāvājam",
-      sectionTitle: "Mūsu Pakalpojumu Paketes",
-      note: "Visas cenas EUR. Individuāli projekti pēc pieprasījuma.",
+      sectionLabel: "Ko mēs piedāvājam",
+      sectionTitle: "Mūsu pakalpojumu paketes",
+      note: "Visas cenas norādītas EUR. Individuāli projekti pieejami pēc pieprasījuma.",
       items: [
         {
-          title: "Reels: Visas 4 Platformas",
-          desc: "Maksimāla sasniedzamība Instagram, TikTok, YouTube Shorts un Facebook Reels vienlaicīgi.",
+          title: "Reel: Visas 4 platformas",
+          desc: "Profesionāls īsformāta video, kas tiek publicēts Instagram, TikTok, YouTube Shorts un Facebook Reels.",
           tags: ["Instagram", "TikTok", "YouTube", "Facebook"],
         },
         {
-          title: "Reels: Viena Platforma",
-          desc: "Augstas ietekmes īsformāta video saturs vienai izvēlētai platformai.",
-          tags: ["1 Platforma", "Vīrāls", "Īss video"],
+          title: "Reel: Viena platforma",
+          desc: "Profesionāls īsformāta video saturs vienai izvēlētai platformai.",
+          tags: ["1 platforma", "Īss video", "Reklāma"],
         },
         {
-          title: "Stāstu Pakete (3 Stāsti)",
-          desc: "Aizraujoši Instagram stāsti, kas palielina redzamību un novirza tiešo trafiku.",
-          tags: ["3 Stāsti", "24h Redzamība", "Instagram"],
+          title: "Story pakete: 3 Story",
+          desc: "Trīs Instagram Story, lai palielinātu redzamību un piesaistītu uzmanību jūsu uzņēmumam.",
+          tags: ["3 Story", "Instagram", "Reklāma"],
         },
         {
-          title: "Viens Stāsts",
-          desc: "Viens Instagram stāsts ātrai redzamībai un tiešai reklamēšanai.",
-          tags: ["1 Stāsts", "Instagram"],
+          title: "Viens Story",
+          desc: "Viens Instagram Story ātrai redzamībai un tiešai reklāmai.",
+          tags: ["1 Story", "Instagram"],
         },
         {
-          title: "YouTube Garais Video",
-          desc: "Detalizēta YouTube satura produkcija, ideāli piemērota biznesa vai vietas prezentācijai.",
+          title: "YouTube garais video",
+          desc: "Detalizēta YouTube satura produkcija uzņēmumu, restorānu vai vietu prezentācijām.",
           tags: ["YouTube", "Garais formāts", "Detalizēts"],
         },
         {
-          title: "Īpašs Brauciens / Atkārtota Filmēšana",
+          title: "Īpašs brauciens / Atkārtota filmēšana",
           desc: "Vairāku vizīšu satura produkcija ilgtermiņa projektiem, braucieniem vai atkārtotam saturam.",
-          tags: ["Vairākas vizītes", "Individuāls", "Plašāks saturs"],
+          tags: ["Vairākas vizītes", "Individuāls", "Paplašināts"],
         },
         {
-          title: "Atklāšana & Īpašas Dienas",
-          desc: "Profesionāla video produkcija atklāšanas ceremonijām, pasākumiem un īpašiem notikumiem.",
+          title: "Atklāšana un īpašas dienas",
+          desc: "Profesionāla video produkcija atklāšanas pasākumiem, notikumiem un īpašām dienām.",
           tags: ["Atklāšana", "Pasākums", "Īpaša diena"],
         },
         {
-          title: "Tās Pašas Dienas Video Piegāde",
-          desc: "Papildinājums steidzamai tās pašas dienas satura piegādei jebkurai paketei.",
-          tags: ["Papildinājums", "Steidzami", "Tā Pati Diena"],
+          title: "Video piegāde tajā pašā dienā",
+          desc: "Papildpakalpojums steidzamai video piegādei tajā pašā dienā.",
+          tags: ["Papildpakalpojums", "Steidzami", "Tajā pašā dienā"],
         },
       ],
-      customNote: "Citi individuāli projekti, cena pēc pieprasījuma.",
-      websiteNote:
-        "Vietnes Izstrāde: ietver 1 gada domēnu un atbalstu",
+      customNote: "Citi individuāli projekti pieejami pēc pieprasījuma.",
+      websiteNote: "Mājaslapas izstrāde: ietver 1 gada domēnu un atbalstu",
     },
     form: {
       sectionLabel: "Sadarbojieties ar mums",
       sectionTitle: "Uzsāciet sadarbību",
-      name: "Vārds Uzvārds",
-      company: "Uzņēmums / Zīmols",
+      name: "Vārds, uzvārds",
+      company: "Uzņēmums / zīmols",
       email: "E-pasta adrese",
       phone: "Tālruņa numurs",
       service: "Pakalpojuma veids",
       servicePlaceholder: "Izvēlieties pakalpojumu",
       serviceOptions: [
-        "Reels: Visas 4 Platformas",
-        "Reels: Viena Platforma",
-        "Stāstu Pakete: 3 Stāsti",
-        "Viens Stāsts",
-        "YouTube Garais Video",
-        "Īpašs Brauciens / Atkārtota Filmēšana",
-        "Atklāšana & Īpašas Dienas",
-        "Tās Pašas Dienas Video Piegāde",
-        "Vietnes Izstrāde",
+        "Reel: Visas 4 platformas",
+        "Reel: Viena platforma",
+        "Story pakete: 3 Story",
+        "Viens Story",
+        "YouTube garais video",
+        "Īpašs brauciens / Atkārtota filmēšana",
+        "Atklāšana un īpašas dienas",
+        "Video piegāde tajā pašā dienā",
+        "Mājaslapas izstrāde",
+        "Sagaidīšana lidostā / Pilsētas ekskursija",
+        "Studentu un ģimeņu atbalsts",
         "Cits / Individuāls",
       ],
       message: "Jūsu ziņojums",
-      messagePlaceholder: "Pastāstiet par savu projektu...",
+      messagePlaceholder: "Pastāstiet mums par savu projektu...",
       submit: "Nosūtīt pieprasījumu",
       success:
-        "Jūsu pieprasījums ir nosūtīts! Mēs sazināsimies ar jums drīzumā.",
+        "Jūsu pieprasījums ir nosūtīts! Mēs ar jums drīzumā sazināsimies.",
     },
   },
 } as const;

@@ -43,13 +43,13 @@ const LINKS = [
     color: "#4267B2",
   },
   {
-    label: "Continue to Website",
+    label: "Our Website",
     icon: <GlobalOutlined />,
     url: "/en",
     color: "#800000",
   },
   {
-    label: "Buy Me a Coffee ☕",
+    label: "Support Us ☕",
     icon: <CoffeeOutlined />,
     url: "https://revolut.me/atakaneae4",
     color: "#FFA800",
@@ -75,7 +75,10 @@ function LinkButton(props: {
     >
       <span
         className="text-2xl w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0"
-        style={{ color: props.color, backgroundColor: `${props.color}15` }}
+        style={{
+          color: props.color,
+          backgroundColor: `${props.color}15`,
+        }}
       >
         {props.icon}
       </span>
@@ -111,7 +114,7 @@ export default function HomePage() {
             <span className="text-[#800000]">Sayfam</span>
           </h1>
           <p className="text-zinc-500 text-sm font-light italic mt-2">
-            Latvias largest Turkish digital platform.
+            Connecting Latvia with the Turkish-speaking community.
           </p>
         </div>
 
@@ -128,7 +131,14 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="text-zinc-400 text-xs mt-10">© 2026 Letonya Sayfam</p>
+        <div className="mt-10 space-y-1">
+          <p className="text-zinc-400 text-xs">
+            Letonya Sayfam • AKA in Europe
+          </p>
+          <p className="text-zinc-300 text-[10px]">
+            © 2026 Letonya Sayfam
+          </p>
+        </div>
       </div>
     </main>
   );

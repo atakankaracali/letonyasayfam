@@ -1,75 +1,77 @@
 import type { Metadata } from "next";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+const SITE_URL = "https://letonyasayfam.com";
 
 export const metadata: Metadata = {
-  title:
-    "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI Asistents",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default:
+      "Letonya Sayfam | Latvia Turkish Community, Media & Local Guide",
+    template: "%s | Letonya Sayfam",
+  },
   description:
-    "Letonya'nın en büyük Türk influencer dijital platformu ve yapay zeka asistanı. Reklam, içerik üretimi, etkinlik, PR hizmetleri ve Letonya yaşam/oturum rehberi.",
+    "Letonya Sayfam is a Latvia-based digital media and community platform connecting Latvia with the Turkish-speaking community through content, local discoveries, business promotion and digital services.",
   keywords: [
     "Letonya Sayfam",
     "Letonya Muhtarı",
-    "Letonya Türk topluluğu",
-    "Latvija turki",
-    "Letonya Türk",
-    "Latvia Turkish influencer",
-    "turku kopiena Latvijā",
-    "Riga Turkish community",
-    "Baltık Türk dijital platform",
-    "Latvia Turk influencer",
+    "AKA in Europe",
+    "Turkish community Latvia",
+    "Turkish-speaking community Latvia",
+    "Turkish community Riga",
+    "Turkish students Latvia",
+    "Turkish students Riga",
+    "Latvia life guide",
+    "Riga local guide",
     "Latvia social media",
-    "Instagram Reels Latvia",
-    "TikTok Latvia",
-    "dijital reklam Letonya",
-    "influencer marketing Latvia",
-    "Letonya Sayfam AI",
-    "Letonya AI",
-    "Latvia AI assistant",
-    "PMLP oturum izni",
-    "Riga expat guide",
+    "business promotion Latvia",
+    "Letonya Türkleri",
+    "Letonya Türk topluluğu",
+    "Letonya'daki Türkler",
+    "Riga Türkleri",
     "Letonya yaşam rehberi",
-    "Letonya üniversite eğitimi",
-    "Letonya iş ilanları",
-    "Letonya ev kiralama",
+    "Latvija turki",
+    "turku kopiena Latvijā",
+    "turki Latvijā",
+    "turku kopiena Rīgā",
   ],
-  authors: [{ name: "Letonya Sayfam", url: "https://www.letonyasayfam.com" }],
+
+  authors: [
+    {
+      name: "Letonya Sayfam",
+      url: SITE_URL,
+    },
+  ],
   creator: "Letonya Sayfam",
   publisher: "Letonya Sayfam",
-  metadataBase: new URL("https://www.letonyasayfam.com"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "/en",
-      tr: "/tr",
-      lv: "/lv",
-    },
-  },
+  applicationName: "Letonya Sayfam",
+  category: "Community",
   openGraph: {
     type: "website",
-    url: "https://www.letonyasayfam.com",
-    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI",
-    description:
-      "Letonya'nın en büyük Türk influencer dijital platformu ve interaktif yapay zeka asistanı. Reklam, kurumsal PR ve Letonya yaşam rehberi.",
     siteName: "Letonya Sayfam",
+    title:
+      "Letonya Sayfam | Latvia's Turkish-Speaking Community Platform",
+    description:
+      "Connecting Latvia with the Turkish-speaking community through media, local discoveries, business promotion and digital services.",
+    locale: "en_US",
+    alternateLocale: ["tr_TR", "lv_LV"],
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Letonya Sayfam",
+        alt: "Letonya Sayfam | Turkish-Speaking Community in Latvia",
       },
     ],
-    locale: "tr_TR",
-    alternateLocale: ["en_US", "lv_LV"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Letonya Sayfam | Latvijas Lielākā Turku Digitālā Platforma & AI",
+    title:
+      "Letonya Sayfam | Turkish-Speaking Community in Latvia",
     description:
-      "Letonya'nın en büyük Türk influencer dijital platformu ve yapay zeka asistanı. Yeni başlayanlar, üniversiteler ve Letonya yaşam rehberi.",
+      "Media, local discoveries, business promotion and digital services for the Turkish-speaking community in Latvia.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -85,8 +87,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/logo.jpg", type: "image/jpeg" },
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/logo.jpg",
+        type: "image/jpeg",
+      },
     ],
     apple: "/logo.jpg",
     shortcut: "/favicon.ico",
@@ -112,12 +120,20 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://www.letonyasayfam.com/#organization",
+                  "@id": `${SITE_URL}/#organization`,
                   name: "Letonya Sayfam",
-                  url: "https://www.letonyasayfam.com",
-                  logo: "https://www.letonyasayfam.com/logo.jpg",
+                  alternateName: [
+                    "Letonya Muhtarı",
+                    "AKA in Europe",
+                  ],
+                  url: SITE_URL,
+                  logo: {
+                    "@type": "ImageObject",
+                    url: `${SITE_URL}/logo.jpg`,
+                  },
+                  image: `${SITE_URL}/og-image.jpg`,
                   description:
-                    "Letonya'nın en büyük Türk influencer dijital platformu. Latvia's largest Turkish digital community.",
+                    "Letonya Sayfam is a Latvia-based digital media and community platform connecting local businesses, students, families and the Turkish-speaking community through content, local discoveries, business promotion and digital services.",
                   email: "akaineurope@gmail.com",
                   telephone: "+37129356847",
                   address: {
@@ -125,6 +141,24 @@ export default function RootLayout({
                     addressLocality: "Riga",
                     addressCountry: "LV",
                   },
+                  areaServed: {
+                    "@type": "Country",
+                    name: "Latvia",
+                  },
+                  knowsAbout: [
+                    "Turkish community in Latvia",
+                    "Turkish-speaking community in Latvia",
+                    "Life in Latvia",
+                    "Study in Latvia",
+                    "Riga",
+                    "Latvia restaurants",
+                    "Latvia local businesses",
+                    "Latvia social media",
+                    "Latvia digital marketing",
+                    "Latvia student life",
+                    "Local discoveries in Latvia",
+                    "Business promotion in Latvia",
+                  ],
                   sameAs: [
                     "https://www.instagram.com/letonyasayfam/",
                     "https://www.tiktok.com/@letonyasayfam",
@@ -133,14 +167,38 @@ export default function RootLayout({
                   ],
                 },
                 {
+                  "@type": "WebSite",
+                  "@id": `${SITE_URL}/#website`,
+                  url: SITE_URL,
+                  name: "Letonya Sayfam",
+                  description:
+                    "Digital media and community platform connecting Latvia with the Turkish-speaking community.",
+                  publisher: {
+                    "@id": `${SITE_URL}/#organization`,
+                  },
+                  inLanguage: [
+                    "en",
+                    "tr",
+                    "lv",
+                  ],
+                },
+                {
                   "@type": "WebApplication",
-                  "@id": "https://www.letonyasayfam.com/ai/#webapp",
+                  "@id": `${SITE_URL}/ai/#webapp`,
+
                   name: "Letonya Sayfam AI",
-                  url: "https://www.letonyasayfam.com/ai",
+
+                  url: `${SITE_URL}/ai`,
+
                   applicationCategory: "EducationalApplication",
                   operatingSystem: "All",
                   description:
-                    "Interactive AI assistant providing guidance on Latvian residence permits (PMLP), higher education, and daily life.",
+                    "An AI-powered digital guide for living, studying, travelling and navigating everyday life in Latvia.",
+
+                  isPartOf: {
+                    "@id": `${SITE_URL}/#website`,
+                  },
+
                   offers: {
                     "@type": "Offer",
                     price: "0",
@@ -153,9 +211,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          {children}
+        </AntdRegistry>
+
         <Analytics />
-        <SpeedInsights/>
+
+        <SpeedInsights />
       </body>
     </html>
   );

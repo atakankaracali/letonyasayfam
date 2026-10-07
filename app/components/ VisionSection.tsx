@@ -32,7 +32,12 @@ export default function VisionSection({
           <Title level={2} className="!text-black !text-4xl font-black">
             {t.title}
           </Title>
-          <Text className="text-xl text-zinc-600">{t.subtitle}</Text>
+          <Text className="text-xl text-zinc-600">
+            {t.subtitle}
+          </Text>
+          <p className="text-base leading-7 text-zinc-600">
+            {t.description}
+          </p>
           <div className="font-bold text-black">
             <CheckCircleOutlined className="text-[#800000] mr-2" />
             {t.badge2}
@@ -43,7 +48,9 @@ export default function VisionSection({
           <Title level={3} className="!text-white mb-6">
             {t.cardTitle}
           </Title>
-          <p className="text-2xl font-bold italic">{t.cardQuote}</p>
+          <p className="text-2xl font-bold italic">
+            {t.cardQuote}
+          </p>
         </div>
       </div>
     </motion.section>
