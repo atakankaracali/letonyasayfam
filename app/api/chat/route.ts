@@ -145,7 +145,7 @@ async function callModel(messages: ModelMessage[]): Promise<string> {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      "HTTP-Referer": "https://letonyasayfam.com",
+      "HTTP-Referer": "https://www.letonyasayfam.com",
       "X-Title": "Letonya Sayfam AI",
       "Content-Type": "application/json",
     },

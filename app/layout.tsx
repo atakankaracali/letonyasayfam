@@ -3,7 +3,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-const SITE_URL = "https://letonyasayfam.com";
+const SITE_URL = "https://www.letonyasayfam.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
