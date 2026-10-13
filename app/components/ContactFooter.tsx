@@ -33,9 +33,9 @@ export default function ContactFooter({
           <MailOutlined className="mr-2" />
           akaineurope@gmail.com
         </a>
-        <a href="tel:+37129356847" className="text-xl text-black">
+        <a href="tel:+37120212899" className="text-xl text-black">
           <PhoneOutlined className="mr-2" />
-          +371 29 356 847
+          +371 20 212 899
         </a>
       </div>
 

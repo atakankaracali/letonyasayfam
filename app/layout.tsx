@@ -135,7 +135,7 @@ export default function RootLayout({
                   description:
                     "Letonya Sayfam is a Latvia-based digital media and community platform connecting local businesses, students, families and the Turkish-speaking community through content, local discoveries, business promotion and digital services.",
                   email: "akaineurope@gmail.com",
-                  telephone: "+37129356847",
+                  telephone: "+37120212899",
                   address: {
                     "@type": "PostalAddress",
                     addressLocality: "Riga",

@@ -122,7 +122,7 @@ Vercel auto-deploys on every push to main.
 ## Contact
 
 Email: akaineurope@gmail.com
-Phone: +371 29 356 847
+Phone: +371 20 212 899
 Instagram: @letonyasayfam
 TikTok: @letonyasayfam
 YouTube: Aka in Europe
