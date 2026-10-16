@@ -36,6 +36,7 @@ export const metadata: Metadata = {
     "turku kopiena Latvijā",
     "turki Latvijā",
     "turku kopiena Rīgā",
+    "Atakan",
   ],
 
   authors: [

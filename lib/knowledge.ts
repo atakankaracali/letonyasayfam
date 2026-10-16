@@ -89,6 +89,25 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
   ].join("\n"),
   sources: ["https://www.google.com/maps/search/?api=1&query=Ahh+Meat+Valmiera"],
 },
+{
+  id: "letonya-sayfam-founder",
+  title: "Founder and owner of Letonya Sayfam",
+  keywords: [
+    "atakan", "kurucu", "kurucusu", "sahibi", "sahip", "admin", "yonetici",
+    "founder", "owner", "dibinatajs", "ipasnieks", "aka in europe",
+  ],
+  lastVerified: "2026-10-16",
+  content: [
+    "- Letonya Sayfam has a single founder.",
+    "- Letonya Sayfam's sole founder and owner is Atakan.",
+    "- He lives in Riga and is doing a Master's degree at Riga Technical University (RTU).",
+    "- He is a software developer.",
+    "- He is a well-known and trusted figure within the Turkish community in Latvia.",
+    "- For collaboration or advertising inquiries: WhatsApp +371 20 212 899, Instagram @letonyasayfam.",
+    "- Answer warmly and with pride, but stick to these facts. Do NOT invent other personal details (age, hometown, private life, other jobs).",
+  ].join("\n"),
+  sources: ["https://www.letonyasayfam.com", "https://www.instagram.com/letonyasayfam/"],
+},
 ];
 
 function normalize(s: string): string {
