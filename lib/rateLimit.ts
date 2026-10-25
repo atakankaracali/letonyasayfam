@@ -1,5 +1,7 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { createHash } from "crypto";
+
 
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 30;
@@ -45,9 +47,12 @@ export async function checkRateLimit(key: string): Promise<boolean> {
 }
 
 export function getClientIp(req: Request): string {
-  return (
+  const ip =
     req.headers.get("x-real-ip") ||
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    "unknown"
-  );
+    "unknown";
+  return createHash("sha256")
+    .update(ip + (process.env.IP_SALT || "letonyasayfam"))
+    .digest("hex")
+    .slice(0, 24);
 }
