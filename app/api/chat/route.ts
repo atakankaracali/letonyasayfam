@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { sanitizeInput, hasAdvancedInjection, MAX_USER_CHARS } from "@/lib/secureInput";
+import {
+  sanitizeInput,
+  hasAdvancedInjection,
+  MAX_USER_CHARS,
+} from "@/lib/secureInput";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import { findRelevantKnowledge, formatKnowledge } from "@/lib/knowledge";
 import { logChat, scrub } from "@/lib/chatLog";
@@ -23,8 +27,7 @@ You are "Letonya Sayfam AI", a courteous, precise assistant for living in, study
 
 ## 2. Accuracy (critical)
 - Today's date is given below. Your training data is older, so any fee, price, deadline, document list or rule you remember may be outdated.
-- Prefer VERIFIED KNOWLEDGE (below, if present) over memory. When quoting a number from it, mention its "last verified" date; if it says UNKNOWN, add a note to double-check the official source.
-- NEVER invent unless it appears in VERIFIED KNOWLEDGE:
+- Prefer VERIFIED KNOWLEDGE (below, if present) over memory. Mention a "last verified" date ONLY when quoting a number that appears in VERIFIED KNOWLEDGE; never add such a note to anything else.- NEVER invent unless it appears in VERIFIED KNOWLEDGE:
   • numbers: fees, prices or price ranges (products, hotels, meals, drinks, rent), processing times, salaries, hourly wages, tax rates, net income percentages
   • transport: bus/tram/trolleybus numbers, stop names, schedules, walking times, distances
   • contact data: addresses, phone numbers, URLs
@@ -74,7 +77,11 @@ User: "Hangi otobüs?" → "Hat numaralarını doğrulanmış olarak bilmediğim
 `.trim();
 
 function buildHistory(raw: unknown): ChatMessage[] | null {
-  if (!Array.isArray(raw) || raw.length === 0 || raw.length > MAX_INCOMING_MESSAGES) {
+  if (
+    !Array.isArray(raw) ||
+    raw.length === 0 ||
+    raw.length > MAX_INCOMING_MESSAGES
+  ) {
     return null;
   }
 
@@ -109,46 +116,89 @@ function rigaDate(): string {
     month: "long",
     year: "numeric",
   });
-
 }
 function detectLang(text: string): string | null {
   const t = text.toLowerCase();
   if (/[\u0400-\u04FF]/.test(t)) return "Russian";
-  if (/[āēīūčģķļņšž]/.test(t) || /\b(sveiki|labdien|paldies|ludzu|lūdzu|ka tev iet|kā tev iet|cik maksa|kur ir|vai|es|man|jums)\b/.test(t)) return "Latvian";  if (/[ğışçöü]/.test(t) || /\b(merhaba|selam|nasıl|nasil|nerede|nerden|nereden|ne kadar|var mı|varmı|mı|mi|abi|kanka|peki|için|icin|bir|ve)\b/.test(t)) return "Turkish";
-  if (/\b(the|what|where|how|is|are|can|i|you|my|please|want|wanna|find|about|have|do)\b/.test(t)) return "English";
+  if (
+    /[āēīūčģķļņšž]/.test(t) ||
+    /\b(sveiki|labdien|paldies|ludzu|lūdzu|ka tev iet|kā tev iet|cik maksa|kur ir|vai|es|man|jums)\b/.test(
+      t,
+    )
+  )
+    return "Latvian";
+  if (
+    /[ğışçöü]/.test(t) ||
+    /\b(merhaba|selam|nasıl|nasil|nerede|nerden|nereden|ne kadar|var mı|varmı|mı|mi|abi|kanka|peki|için|icin|bir|ve)\b/.test(
+      t,
+    )
+  )
+    return "Turkish";
+  if (
+    /\b(the|what|where|how|is|are|can|i|you|my|please|want|wanna|find|about|have|do)\b/.test(
+      t,
+    )
+  )
+    return "English";
   return null;
 }
 
 const VEHICLE =
   "otob[uü]s\\w*|tramvay\\w*|troleyb[uü]s\\w*|bus(es)?|tram|trolleybus|autobus\\w*|tramvaj\\w*|trolejbus\\w*|автобус\\w*|трамва\\w*|троллейбус\\w*";
-const NUMBER_BEFORE = new RegExp(`\\b(\\d{1,3})\\b(?![.),\\d])[^\\n\\d]{0,15}?(${VEHICLE})`, "gi");
-const NUMBER_AFTER = new RegExp(`(${VEHICLE})[^\\n\\d]{0,15}?\\b(\\d{1,3})\\b`, "gi");
+const NUMBER_BEFORE = new RegExp(
+  `\\b(\\d{1,3})\\b(?![.),\\d])[^\\n\\d]{0,15}?(${VEHICLE})`,
+  "gi",
+);
+const NUMBER_AFTER = new RegExp(
+  `(${VEHICLE})[^\\n\\d]{0,15}?\\b(\\d{1,3})\\b`,
+  "gi",
+);
 
-function findUnverifiedRouteNumbers(reply: string, knowledgeText: string): string[] {
+function findUnverifiedRouteNumbers(
+  reply: string,
+  knowledgeText: string,
+): string[] {
   const found = new Set<string>();
   for (const m of reply.matchAll(NUMBER_BEFORE)) found.add(m[1]);
   for (const m of reply.matchAll(NUMBER_AFTER)) found.add(m[m.length - 1]);
-  return [...found].filter((n) => !new RegExp(`\\b${n}\\b`).test(knowledgeText));
+  return [...found].filter(
+    (n) => !new RegExp(`\\b${n}\\b`).test(knowledgeText),
+  );
+}
+
+const PRICE =
+  /(\d+(?:[.,]\d+)?\s*(?:[-–]\s*\d+(?:[.,]\d+)?\s*)?(?:€|eur\b|euro|avro|tl\b|lira|\$|usd))|((?:€|\$)\s*\d+(?:[.,]\d+)?)/gi;
+
+function findUnverifiedPrices(reply: string, knowledgeText: string): string[] {
+  const found = new Set<string>();
+  for (const m of reply.matchAll(PRICE)) {
+    const nums = m[0].match(/\d+(?:[.,]\d+)?/g) || [];
+    if (nums.some((n) => !knowledgeText.includes(n))) found.add(m[0].trim());
+  }
+  return [...found];
 }
 
 async function callModel(messages: ModelMessage[]): Promise<string> {
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      "HTTP-Referer": "https://www.letonyasayfam.com",
-      "X-Title": "Letonya Sayfam AI",
-      "Content-Type": "application/json",
+  const response = await fetch(
+    "https://openrouter.ai/api/v1/chat/completions",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "HTTP-Referer": "https://www.letonyasayfam.com",
+        "X-Title": "Letonya Sayfam AI",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        temperature: 0.2,
+        top_p: 0.9,
+        max_tokens: 500,
+        messages,
+      }),
+      signal: AbortSignal.timeout(30_000),
     },
-    body: JSON.stringify({
-      model: MODEL,
-      temperature: 0.2,
-      top_p: 0.9,
-      max_tokens: 500,
-      messages,
-    }),
-    signal: AbortSignal.timeout(30_000),
-  });
+  );
 
   if (!response.ok) {
     const errText = await response.text().catch(() => "");
@@ -165,7 +215,10 @@ export async function POST(req: Request) {
 
     if (!(await checkRateLimit(ip))) {
       return NextResponse.json(
-        { error: "Too many requests. Please wait 15 minutes before trying again." },
+        {
+          error:
+            "Too many requests. Please wait 15 minutes before trying again.",
+        },
         { status: 429 },
       );
     }
@@ -174,26 +227,41 @@ export async function POST(req: Request) {
     const history = buildHistory(body?.messages);
 
     if (!history || history.length === 0) {
-      return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid request payload." },
+        { status: 400 },
+      );
     }
 
     const last = history[history.length - 1];
     if (last.role !== "user") {
-      return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid request payload." },
+        { status: 400 },
+      );
     }
 
     const rawLast = body.messages[body.messages.length - 1]?.content ?? "";
     if (sanitizeInput(rawLast).length > MAX_USER_CHARS) {
       return NextResponse.json(
-        { error: `Message exceeds the maximum limit of ${MAX_USER_CHARS} characters. Please shorten your question.` },
+        {
+          error: `Message exceeds the maximum limit of ${MAX_USER_CHARS} characters. Please shorten your question.`,
+        },
         { status: 400 },
       );
     }
 
-    if (history.some((m) => m.role === "user" && hasAdvancedInjection(m.content))) {
-      console.warn(`[SECURITY] Blocked input: "${scrub(last.content).slice(0, 60)}..."`);
+    if (
+      history.some((m) => m.role === "user" && hasAdvancedInjection(m.content))
+    ) {
+      console.warn(
+        `[SECURITY] Blocked input: "${scrub(last.content).slice(0, 60)}..."`,
+      );
       return NextResponse.json(
-        { error: "Your message could not be processed. Please rephrase your question about Latvia." },
+        {
+          error:
+            "Your message could not be processed. Please rephrase your question about Latvia.",
+        },
         { status: 400 },
       );
     }
@@ -213,7 +281,12 @@ export async function POST(req: Request) {
       { role: "system", content: systemContent },
       ...history.slice(0, -1),
       ...(lang
-        ? [{ role: "system" as const, content: `The user's latest message is in ${lang}. Reply ONLY in ${lang}.` }]
+        ? [
+            {
+              role: "system" as const,
+              content: `The user's latest message is in ${lang}. Reply ONLY in ${lang}.`,
+            },
+          ]
         : []),
       last,
     ];
@@ -224,10 +297,19 @@ export async function POST(req: Request) {
     try {
       reply = await callModel(modelMessages);
 
-      const unverified = findUnverifiedRouteNumbers(reply, knowledge);
-      if (unverified.length > 0) {
+      const badRoutes = findUnverifiedRouteNumbers(reply, knowledge);
+      const badPrices = findUnverifiedPrices(reply, knowledge);
+
+      if (badRoutes.length > 0 || badPrices.length > 0) {
         routeGuardTriggered = true;
-        console.warn(`[ROUTE GUARD] Unverified route numbers: ${unverified.join(", ")}`);
+        console.warn(
+          `[GUARD] routes: ${badRoutes.join(", ")} | prices: ${badPrices.join(", ")}`,
+        );
+
+        const problems: string[] = [];
+        if (badRoutes.length)
+          problems.push(`route numbers (${badRoutes.join(", ")})`);
+        if (badPrices.length) problems.push(`prices (${badPrices.join(", ")})`);
 
         reply = await callModel([
           ...modelMessages,
@@ -235,22 +317,29 @@ export async function POST(req: Request) {
           {
             role: "user",
             content:
-              `INTERNAL CHECK (not from the user): your answer mentions route numbers (${unverified.join(", ")}) that are not in VERIFIED KNOWLEDGE. ` +
-              "Rewrite the answer in the same language as the user's question WITHOUT any route numbers, stop names or walking times, and include the Google Maps transit link instead.",
+              `INTERNAL CHECK (not from the user): your answer contains ${problems.join(" and ")} that are not in VERIFIED KNOWLEDGE. ` +
+              "Rewrite the answer in the same language as the user's question WITHOUT any prices, price ranges, route numbers, stop names or walking times. " +
+              "Say that prices change often and give a Google Maps search link or an official source instead. Do not add any 'last verified' note.",
           },
         ]);
       }
     } catch (err) {
       console.error("OpenRouter Gateway Error:", err);
       return NextResponse.json(
-        { error: "The AI service is temporarily unavailable. Please try again shortly." },
+        {
+          error:
+            "The AI service is temporarily unavailable. Please try again shortly.",
+        },
         { status: 502 },
       );
     }
 
     if (!reply) {
       return NextResponse.json(
-        { error: "No response was generated. Please try rephrasing your question." },
+        {
+          error:
+            "No response was generated. Please try rephrasing your question.",
+        },
         { status: 502 },
       );
     }
@@ -262,7 +351,9 @@ export async function POST(req: Request) {
       ts: new Date().toISOString(),
       question: last.content,
       previousQuestion:
-        userQuestions.length > 1 ? userQuestions[userQuestions.length - 2].content : "",
+        userQuestions.length > 1
+          ? userQuestions[userQuestions.length - 2].content
+          : "",
       answer: reply.slice(0, 2000),
       knowledge: kbEntries.map((e) => e.id),
       routeGuard: routeGuardTriggered,
@@ -273,7 +364,9 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Internal Chat Route Exception:", error);
     return NextResponse.json(
-      { error: "An unexpected system error occurred. Please try again shortly." },
+      {
+        error: "An unexpected system error occurred. Please try again shortly.",
+      },
       { status: 500 },
     );
   }
